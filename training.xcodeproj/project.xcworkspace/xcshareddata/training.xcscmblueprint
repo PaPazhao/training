@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "630e2182-30e6-45e7-b747-a9c2abe7a573++2070",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "630e2182-30e6-45e7-b747-a9c2abe7a573++2070" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "630e2182-30e6-45e7-b747-a9c2abe7a573++2070" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BFDDF2B8-7DD1-4C03-876D-2A9F4A0BACD1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "630e2182-30e6-45e7-b747-a9c2abe7a573++2070" : "MCU\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "training",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "users\/zhaoli\/Homework\/training.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/45.78.2.232:8492",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "630e2182-30e6-45e7-b747-a9c2abe7a573++2070"
+    }
+  ]
+}
