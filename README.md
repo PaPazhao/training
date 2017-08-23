@@ -81,8 +81,13 @@ fsm_initialiser( <状态机名称>,
     )
 ```  
 
+>注意   
+>当你使用 `fsm_initialiser` 的时候，我们的宏木板还会自动定义一个函数原型，这样，你就可以用这个函数圆形去定义指向 `当前初始化函数` 的函数指针。  
+函数原型的名称如下：
 
-
+```
+<状态机名称>_init_fn
+```
 
 ## 实例:  
  
@@ -104,15 +109,19 @@ fsm_initialiser( print_string,
     )
 ```
 
->注意  
-> `//!< <状态机名称>_init  就是初始化函数的函数名。`  
-> `print_string_init_fn *fnInit = &print_string_init;`   
-
-# extern 状态机初始化函数
-语法：
+>注意
+> 这里，系统顺便定义了一个函数原型，`print_string_init_fn`，你可以用`print_string_init_fn `直接定义函数指针： 
 
 ```
-extern_simple_fsm_initialiser( <状态机名称>,
+//!< <状态机名称>_init  就是初始化函数的函数名。  
+print_string_init_fn *fnInit = &print_string_init;   
+```
+
+# extern 状态机初始化函数
+## 语法：
+
+```
+extern_fsm_initialiser( <状态机名称>,
     args(           
         <状态机初始化函数的形参列表，参数用逗号隔开，如果真的没有形参，可以省略该部分，讲真，没有形参，你要initialiser作甚？>
     
@@ -121,11 +130,11 @@ extern_simple_fsm_initialiser( <状态机名称>,
 
 ```
 
-例子：
+## 例子：
 
 ```
 /*! fsm used to output specified string */
-extern_simple_fsm_initialiser( print_string,
+extern_fsm_initialiser( print_string,
     args(           
         const char *pchString, uint16_t hwSize
     )
@@ -133,8 +142,13 @@ extern_simple_fsm_initialiser( print_string,
 
 ```
 
+> 注意  
+> `//!< <状态机名称>_init  就是初始化函数的函数名。`
+> `print_string_init_fn *fnInit = &print_string_init;`
+
+
 # 如何初始化一个状态机
-语法：
+## 语法：
 
 ```
 
@@ -148,7 +162,7 @@ init_fsm(   <状态机名称>, <目标状态机控制块的地址>,
      NOT NULL   <目标状态机控制块的地址>
 ```
 
-例子:
+## 例子:
 
 ```
 
@@ -167,7 +181,7 @@ static fsm(print_string)  s_fsmPrintString;
 
 # 如何实现状态机
 
-语法:
+## 语法:
 
 ```
 fsm_implementation(  <状态机名称>, 
@@ -186,7 +200,7 @@ fsm_implementation(  <状态机名称>,
     )
 ```
 
-例子:
+## 例子:
 
 ```
 fsm_implementation(  print_string )
@@ -205,7 +219,9 @@ fsm_implementation(  print_string )
 当你使用 fsm_implementation 的时候，我们的宏木板还会自动定义一个函数原型，这样，你就可以
     用这个函数圆形去定义指向 当前初始化函数 的函数指针。函数原型的名称如下：
 
-  ` <状态机名称>_fn`
+```
+<状态机名称>_fn
+```
 这里，系统顺便定义了一个函数原型，`print_string_fn`，你可以用`print_string_fn` 直接定义函数指针：
 
 ```
@@ -214,8 +230,13 @@ print_string_fn *fnFSM = &print_string;   //!< <状态机名称> 就是状态机
 
 
 # extern 一个状态机函数
+ 
+当你使用 extern_fsm_implementation 的时候，我们的宏木板还会自动定义一个函数原型，这样，你就可以用这个函数圆形去定义指向 当前初始化函数 的函数指针。函数原型的名称如下：
 
-语法:
+```
+<状态机名称>_fn
+```
+## 语法:
 
 ```
 extern_fsm_implementation(  <状态机名称>, 
@@ -224,7 +245,7 @@ extern_fsm_implementation(  <状态机名称>,
 
 ```
 
-实例:
+## 实例:
 
 ```
 
@@ -237,11 +258,15 @@ extern_fsm_implementation(  print_string );
 
 ...
 
-这里，系统顺便定义了一个函数原型，print_string_fn，你可以用print_string_fn 直接定义函数指针：
-    print_string_fn *fnFSM = &print_string;   //!< <状态机名称> 就是状态机函数的名称。
 
 ```
 
+
+这里，系统顺便定义了一个函数原型，`print_string_fn`，你可以用`print_string_fn `直接定义函数指针：
+
+```
+   print_string_fn *fnFSM = &print_string;   //!< <状态机名称> 就是状态机函数的名称。
+```
 
 # 实现一个状态
 ## 语法:
@@ -258,9 +283,19 @@ state( <状态名称>,
 在实现状态的过程中，状态的切换要通过 transfer_to() 来实现，它将立即终止当前状态代码的执行，
 并跳转到目标状态中，其语法如下：
  
-```    
+```
 transfer_to( <目标状态的名称> )
 ```
+有些时候，我们只希望更新状态机的状态，而并不希望立即终止当前状态机的执行，则可以用
+`update_state_to()` 来实现。通常`update_state_to()` 配合 “省缺状态结尾处的`fsm_on_going()`” 来直接 `fall-through` 到紧随着当前状态的下一个状态来执行，这实际上是利用switch的`fall-through`特性
+来实现某些情况下的状态机性能提升。其语法如下：
+ 
+
+```
+update_state_to( <目标状态的名称> )  
+```
+
+ 
 实际上 transfer_to() 等效于以下的组合
 
 ```
