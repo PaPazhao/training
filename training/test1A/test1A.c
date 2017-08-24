@@ -51,7 +51,7 @@ fsm_initialiser(print_hello)
  @return return value description
  */
 fsm_implementation(print_hello)
-    def_states(PRINT_H, PRINT_E, PRINT_L, PRINT_L_2, PRINT_O, DELAY)
+    def_states(PRINT_H, PRINT_E, PRINT_L, PRINT_L_2, PRINT_O, PRINT_R, PRINT_N, DELAY)
 
     body(
         state(PRINT_H,
@@ -86,6 +86,22 @@ fsm_implementation(print_hello)
 
         state(PRINT_O,
             if (!SERIAL_OUT('O')) {
+                fsm_on_going();
+            }
+
+            update_state_to(PRINT_R)
+        )
+
+        state(PRINT_R,
+            if (!SERIAL_OUT('\r')) {
+                fsm_on_going();
+            }
+
+            update_state_to(PRINT_N)
+        )
+
+        state(PRINT_N,
+            if (!SERIAL_OUT('\n')) {
                 fsm_on_going();
             }
 

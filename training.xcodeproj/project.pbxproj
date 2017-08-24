@@ -35,7 +35,7 @@
 		339438931F4D2FDF00790911 /* serial_out.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = serial_out.c; sourceTree = "<group>"; };
 		339438941F4D2FDF00790911 /* serial_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial_out.h; sourceTree = "<group>"; };
 		339438961F4D2FDF00790911 /* app_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
-		339438971F4D2FDF00790911 /* test1A.c */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 0; lastKnownFileType = sourcecode.c.c; path = test1A.c; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 0; };
+		339438971F4D2FDF00790911 /* test1A.c */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.c; path = test1A.c; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 0; };
 		339438981F4D2FDF00790911 /* test1A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test1A.h; sourceTree = "<group>"; };
 		339438991F4D2FDF00790911 /* ooc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ooc.h; sourceTree = "<group>"; };
 		3394389A1F4D2FDF00790911 /* simple_fsm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_fsm.h; sourceTree = "<group>"; };
