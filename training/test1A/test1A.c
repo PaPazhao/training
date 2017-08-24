@@ -43,7 +43,7 @@ simple_fsm(print_hello, def_params(fsm(delay_1s) fsmDelay;))
  @return return value description
  */
 fsm_initialiser(print_hello)
-  init_body()
+    init_body()
 
  /**
  Implement the fsm: print_hello
@@ -52,55 +52,54 @@ fsm_initialiser(print_hello)
  @return return value description
  */
 fsm_implementation(print_hello)
-  def_states(PRINT_H, PRINT_E, PRINT_L, PRINT_L_2, PRINT_O, DELAY)
+    def_states(PRINT_H, PRINT_E, PRINT_L, PRINT_L_2, PRINT_O, DELAY)
 
-  body(
-      state(PRINT_H,
-      if (!SERIAL_OUT('H')) {
-          fsm_on_going();
-      }
-    
-      update_state_to(PRINT_E)
-    )
+    body(
+        state(PRINT_H,
+            if (!SERIAL_OUT('H')) {
+                fsm_on_going();
+            }
 
-  state(PRINT_E,
-        if (!SERIAL_OUT('E')) {
-          fsm_on_going();
-      }
-        update_state_to(PRINT_L)
-      
-    )
+            update_state_to(PRINT_E)
+        )
 
-  state(PRINT_L,
-      if (!SERIAL_OUT('L')) {
-        fsm_on_going();
-      }
-      update_state_to(PRINT_L_2)
-    )
+        state(PRINT_E,
+            if (!SERIAL_OUT('E')) {
+                fsm_on_going();
+            }
+            update_state_to(PRINT_L)
+        )
 
-  state(PRINT_L_2,
-      if (!SERIAL_OUT('L')) {
-          fsm_on_going();
-      }
-    
-      update_state_to(PRINT_O)
-    )
+        state(PRINT_L,
+            if (!SERIAL_OUT('L')) {
+                fsm_on_going();
+            }
+            update_state_to(PRINT_L_2)
+        )
 
-  state(PRINT_O,
-      if (!SERIAL_OUT('O')) {
-        fsm_on_going();
-      }
-        
-       init_fsm(delay_1s, &(this.fsmDelay));
-       update_state_to(DELAY)
-    )
+        state(PRINT_L_2,
+            if (!SERIAL_OUT('L')) {
+                fsm_on_going();
+            }
 
-  state(DELAY,
-      if (fsm_rt_cpl == call_fsm(delay_1s, &(this.fsmDelay) )) {
-        fsm_cpl();
-      }
-      
-      fsm_on_going();
+            update_state_to(PRINT_O)
+        )
+
+        state(PRINT_O,
+            if (!SERIAL_OUT('O')) {
+                fsm_on_going();
+            }
+
+            init_fsm(delay_1s, &(this.fsmDelay));
+            update_state_to(DELAY)
+        )
+
+        state(DELAY,
+            if (fsm_rt_cpl == call_fsm(delay_1s, &(this.fsmDelay) )) {
+                fsm_cpl();
+            }
+
+            fsm_on_going();
+        )
     )
-  )
 /* EOF */
