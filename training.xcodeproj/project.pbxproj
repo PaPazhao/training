@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		339438881F4D2FCC00790911 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438871F4D2FCC00790911 /* main.c */; };
-		3394389B1F4D2FDF00790911 /* delay.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438911F4D2FDF00790911 /* delay.c */; };
+		3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438911F4D2FDF00790911 /* delay_1s.c */; };
 		3394389C1F4D2FDF00790911 /* serial_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438931F4D2FDF00790911 /* serial_out.c */; };
 		3394389D1F4D2FDF00790911 /* test1A.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438971F4D2FDF00790911 /* test1A.c */; };
 /* End PBXBuildFile section */
@@ -30,12 +30,12 @@
 		339438871F4D2FCC00790911 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		3394388E1F4D2FDF00790911 /* app_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
 		339438901F4D2FDF00790911 /* app_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
-		339438911F4D2FDF00790911 /* delay.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delay.c; sourceTree = "<group>"; };
-		339438921F4D2FDF00790911 /* delay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delay.h; sourceTree = "<group>"; };
+		339438911F4D2FDF00790911 /* delay_1s.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delay_1s.c; sourceTree = "<group>"; };
+		339438921F4D2FDF00790911 /* delay_1s.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = delay_1s.h; sourceTree = "<group>"; };
 		339438931F4D2FDF00790911 /* serial_out.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = serial_out.c; sourceTree = "<group>"; };
 		339438941F4D2FDF00790911 /* serial_out.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serial_out.h; sourceTree = "<group>"; };
 		339438961F4D2FDF00790911 /* app_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
-		339438971F4D2FDF00790911 /* test1A.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test1A.c; sourceTree = "<group>"; };
+		339438971F4D2FDF00790911 /* test1A.c */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 0; lastKnownFileType = sourcecode.c.c; path = test1A.c; sourceTree = "<group>"; usesTabs = 0; wrapsLines = 0; };
 		339438981F4D2FDF00790911 /* test1A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test1A.h; sourceTree = "<group>"; };
 		339438991F4D2FDF00790911 /* ooc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ooc.h; sourceTree = "<group>"; };
 		3394389A1F4D2FDF00790911 /* simple_fsm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_fsm.h; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				339438901F4D2FDF00790911 /* app_cfg.h */,
-				339438911F4D2FDF00790911 /* delay.c */,
-				339438921F4D2FDF00790911 /* delay.h */,
+				339438911F4D2FDF00790911 /* delay_1s.c */,
+				339438921F4D2FDF00790911 /* delay_1s.h */,
 			);
 			path = delay;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 			files = (
 				3394389C1F4D2FDF00790911 /* serial_out.c in Sources */,
 				339438881F4D2FCC00790911 /* main.c in Sources */,
-				3394389B1F4D2FDF00790911 /* delay.c in Sources */,
+				3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */,
 				3394389D1F4D2FDF00790911 /* test1A.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +295,7 @@
 				3394388D1F4D2FCC00790911 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

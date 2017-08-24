@@ -11,6 +11,6 @@
 
 
 #include "../app_cfg.h"
-#include "../delay/delay.h"
+#include "../delay/delay_1s.h"
 
 #endif /* print_string_h */

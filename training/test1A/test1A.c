@@ -45,8 +45,7 @@ simple_fsm(print_hello, def_params(fsm(delay_1s) fsmDelay;))
 fsm_initialiser(print_hello)
   init_body()
 
-
-/**
+ /**
  Implement the fsm: print_hello
 
  @param print_hello print_hello description
@@ -57,44 +56,43 @@ fsm_implementation(print_hello)
 
   body(
       state(PRINT_H,
-      if (SERIAL_OUT('H')) {
-        transfer_to(PRINT_E);
+      if (!SERIAL_OUT('H')) {
+          fsm_on_going();
       }
-
-      fsm_on_going();
+    
+      update_state_to(PRINT_E)
     )
 
   state(PRINT_E,
-      if (SERIAL_OUT('E')) {
-        transfer_to(PRINT_L);
+        if (!SERIAL_OUT('E')) {
+          fsm_on_going();
       }
-
-      fsm_on_going();
+        update_state_to(PRINT_L)
+      
     )
 
   state(PRINT_L,
-      if (SERIAL_OUT('L')) {
-        transfer_to(PRINT_L_2);
+      if (!SERIAL_OUT('L')) {
+        fsm_on_going();
       }
-
-      fsm_on_going();
+      update_state_to(PRINT_L_2)
     )
 
   state(PRINT_L_2,
-      if (SERIAL_OUT('L')) {
-        transfer_to(PRINT_O);
+      if (!SERIAL_OUT('L')) {
+          fsm_on_going();
       }
-
-      fsm_on_going();
+    
+      update_state_to(PRINT_O)
     )
 
   state(PRINT_O,
       if (!SERIAL_OUT('O')) {
         fsm_on_going();
       }
-
-      init_fsm(delay_1s, &(this.fsmDelay), args(DELAY_S));
-      update_state_to(DELAY);
+        
+       init_fsm(delay_1s, &(this.fsmDelay));
+       update_state_to(DELAY)
     )
 
   state(DELAY,
