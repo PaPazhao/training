@@ -6,8 +6,8 @@
 //  Copyright © 2017年 zhaoli. All rights reserved.
 //
 
-#ifndef __APP_DELAY_h
-#define __APP_DELAY_h
+#ifndef __APP_DELAY_H__
+#define __APP_DELAY_H__
 
 
 #include "../app_cfg.h"
