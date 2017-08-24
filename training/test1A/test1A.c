@@ -11,7 +11,6 @@
 
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
-
 #ifndef SERIAL_OUT
 #define SERIAL_OUT(__BYTE)  serial_out(__BYTE)
 #endif
