@@ -14,20 +14,20 @@ simple_fsm(delay_1s,
     ))
 
 fsm_initialiser(delay_1s)
-	init_body(
-		this.wCounter = DELAY_S;
-	)
+    init_body(
+        this.wCounter = DELAY_S;
+    )
 
 fsm_implementation(delay_1s)
     def_states(DELAY_1S)
-	
+
     body(
         state(DELAY_1S,
             if (!this.wCounter) {
                 fsm_cpl();
             }
-           
+
             this.wCounter -= 1;
             fsm_on_going();
         )
-     )
+    )
