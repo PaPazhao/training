@@ -13,6 +13,6 @@
 #include <stdbool.h>
 #include "ooc.h"
 #include "simple_fsm.h"
-
+#include "event.h"
 
 #endif /* print_string_h */

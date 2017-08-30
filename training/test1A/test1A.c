@@ -30,7 +30,10 @@ extern bool serial_out(uint8_t chByte);
 /*============================ LOCAL VARIABLES ===============================*/
 
 /*============================ PROTOTYPES ====================================*/
-simple_fsm(print_hello, def_params(fsm(delay_1s) fsmDelay;))
+simple_fsm(print_hello,
+    def_params(
+        fsm(delay_1s) fsmDelay;
+    ))
 
 /*============================ IMPLEMENTATION ================================*/
 
@@ -51,7 +54,15 @@ fsm_initialiser(print_hello)
  @return return value description
  */
 fsm_implementation(print_hello)
-    def_states(PRINT_H, PRINT_E, PRINT_L, PRINT_L_2, PRINT_O, PRINT_R, PRINT_N, DELAY)
+    def_states(
+        PRINT_H,
+        PRINT_E,
+        PRINT_L,
+        PRINT_L_2,
+		PRINT_O,
+		PRINT_R,
+		PRINT_N,
+		DELAY)
 
     body(
         state(PRINT_H,

@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33363F1B1F50101A000346B6 /* test4A.c in Sources */ = {isa = PBXBuildFile; fileRef = 33363F191F50101A000346B6 /* test4A.c */; };
 		339438881F4D2FCC00790911 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438871F4D2FCC00790911 /* main.c */; };
 		3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438911F4D2FDF00790911 /* delay_1s.c */; };
 		3394389C1F4D2FDF00790911 /* serial_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438931F4D2FDF00790911 /* serial_out.c */; };
 		3394389D1F4D2FDF00790911 /* test1A.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438971F4D2FDF00790911 /* test1A.c */; };
+		5ED2F55C1F508E00004EA6A7 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2F55A1F508E00004EA6A7 /* event.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,6 +28,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		33363F191F50101A000346B6 /* test4A.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test4A.c; sourceTree = "<group>"; };
+		33363F1A1F50101A000346B6 /* test4A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test4A.h; sourceTree = "<group>"; };
+		33363F1C1F50102C000346B6 /* app_cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
 		339438841F4D2FCC00790911 /* training */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = training; sourceTree = BUILT_PRODUCTS_DIR; };
 		339438871F4D2FCC00790911 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		3394388E1F4D2FDF00790911 /* app_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
@@ -39,6 +44,8 @@
 		339438981F4D2FDF00790911 /* test1A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test1A.h; sourceTree = "<group>"; };
 		339438991F4D2FDF00790911 /* ooc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ooc.h; sourceTree = "<group>"; };
 		3394389A1F4D2FDF00790911 /* simple_fsm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_fsm.h; sourceTree = "<group>"; };
+		5ED2F55A1F508E00004EA6A7 /* event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
+		5ED2F55B1F508E00004EA6A7 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		333D6C9B1F5000AD008A56F6 /* test4A */ = {
+			isa = PBXGroup;
+			children = (
+				33363F191F50101A000346B6 /* test4A.c */,
+				33363F1A1F50101A000346B6 /* test4A.h */,
+				33363F1C1F50102C000346B6 /* app_cfg.h */,
+			);
+			path = test4A;
+			sourceTree = "<group>";
+		};
 		3394387B1F4D2FCC00790911 = {
 			isa = PBXGroup;
 			children = (
@@ -78,7 +95,10 @@
 				3394388E1F4D2FDF00790911 /* app_cfg.h */,
 				339438871F4D2FCC00790911 /* main.c */,
 				3394388F1F4D2FDF00790911 /* delay */,
+				333D6C9B1F5000AD008A56F6 /* test4A */,
 				339438951F4D2FDF00790911 /* test1A */,
+				5ED2F55A1F508E00004EA6A7 /* event.c */,
+				5ED2F55B1F508E00004EA6A7 /* event.h */,
 			);
 			path = training;
 			sourceTree = "<group>";
@@ -161,8 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ED2F55C1F508E00004EA6A7 /* event.c in Sources */,
 				3394389C1F4D2FDF00790911 /* serial_out.c in Sources */,
 				339438881F4D2FCC00790911 /* main.c in Sources */,
+				33363F1B1F50101A000346B6 /* test4A.c in Sources */,
 				3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */,
 				3394389D1F4D2FDF00790911 /* test1A.c in Sources */,
 			);

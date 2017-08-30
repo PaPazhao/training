@@ -7,18 +7,15 @@
 //
 
 #include "app_cfg.h"
-#include "test1A/test1A.h"
+#include "test4A/test4A.h"
 
-
-int main(int argc, const char * argv[]) {
-    
-    fsm(print_hello) fsmPrintString;
-    
-    init_fsm(print_hello, &fsmPrintString);
+int main(int argc, const char * argv[])
+{
+    init_test4A();
     
     while (1) {
-        call_fsm(print_hello, &fsmPrintString);
+        test4A();
     }
-    
+ 
     return 0;
 }

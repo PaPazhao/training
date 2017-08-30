@@ -11,4 +11,5 @@
 #include "app_cfg.h"
 
 extern bool serial_out(uint8_t chByte);
+extern bool serial_in(uint8_t *pchByte);
 #endif /* serial_out_h */

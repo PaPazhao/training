@@ -30,10 +30,10 @@
 
 /*============================ MACROFIED FUNCTIONS ===========================*/
 #define def_states(...)                                             \
-enum {                                                      \
-START = 0,                                              \
-__VA_ARGS__                                             \
-};
+        enum {                                                      \
+            START = 0,                                              \
+            __VA_ARGS__                                             \
+        };
 
 #define def_params(...)         __VA_ARGS__
 
@@ -43,64 +43,64 @@ __VA_ARGS__                                             \
 #define fsm(__NAME)             __fsm(__NAME)
 
 #define __simple_fsm(__FSM_TYPE, ...)                               \
-DECLARE_CLASS(__FSM_TYPE)                                   \
-DEF_CLASS(__FSM_TYPE)                                       \
-uint_fast8_t chState;                                   \
-__VA_ARGS__                                             \
-END_DEF_CLASS(__FSM_TYPE)
+        DECLARE_CLASS(__FSM_TYPE)                                   \
+        DEF_CLASS(__FSM_TYPE)                                       \
+            uint_fast8_t chState;                                   \
+            __VA_ARGS__                                             \
+        END_DEF_CLASS(__FSM_TYPE)
 
 #define simple_fsm(__NAME, ...)                                     \
-__simple_fsm(fsm(__NAME), __VA_ARGS__)
+        __simple_fsm(fsm(__NAME), __VA_ARGS__)
 
 #define __extern_simple_fsm(__FSM_TYPE, ...)                        \
-DECLARE_CLASS(__FSM_TYPE)                                   \
-EXTERN_CLASS(__FSM_TYPE)                                    \
-uint_fast8_t chState;                                   \
-__VA_ARGS__                                             \
-END_EXTERN_CLASS(__FSM_TYPE)
+        DECLARE_CLASS(__FSM_TYPE)                                   \
+        EXTERN_CLASS(__FSM_TYPE)                                    \
+            uint_fast8_t chState;                                   \
+            __VA_ARGS__                                             \
+        END_EXTERN_CLASS(__FSM_TYPE)                                
 
 
 
 #define extern_simple_fsm(__NAME, ...)                                          \
-__extern_simple_fsm(fsm(__NAME), __VA_ARGS__)
+            __extern_simple_fsm(fsm(__NAME), __VA_ARGS__)  
 
-/*! \brief extern fsm initialisation function and provide function prototye
- as <__NAME>_fn, E.g
- extern_fsm_initialiser( demo_fsm );
- we extern a function called:
- extern fsm_demo_fsm_t *demo_fsm_init( fsm_demo_fsm_t *ptFSM );
- and a prototype definition:
- typedef fsm_demo_fsm_t *demo_fsm_init_fn( fsm_demo_fsm_t *ptFSM );
- We can then use demo_fsm_init_fn to define function pointer
+/*! \brief extern fsm initialisation function and provide function prototye 
+           as <__NAME>_fn, E.g
+           extern_fsm_initialiser( demo_fsm );
+           we extern a function called:
+           extern fsm_demo_fsm_t *demo_fsm_init( fsm_demo_fsm_t *ptFSM );
+           and a prototype definition:
+           typedef fsm_demo_fsm_t *demo_fsm_init_fn( fsm_demo_fsm_t *ptFSM );
+           We can then use demo_fsm_init_fn to define function pointer
  */
 #define __extern_fsm_initialiser(__NAME, ...)                                   \
-typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__);  \
-extern  fsm(__NAME) *__NAME##_init(fsm(__NAME) *ptFSM __VA_ARGS__);
+        typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__);  \
+        extern  fsm(__NAME) *__NAME##_init(fsm(__NAME) *ptFSM __VA_ARGS__);
 #define extern_fsm_initialiser(__NAME, ...)                                     \
-__extern_fsm_initialiser(__NAME, __VA_ARGS__)
+            __extern_fsm_initialiser(__NAME, __VA_ARGS__)
 
 /*! \brief extern fsm task function and provide function prototye as <__NAME>_fn, E.g
- extern_fsm_implementation( demo_fsm );
- we extern a function called:
- fsm_rt_t demo_fsm( fsm_demo_fsm_t *ptFSM )
- and a prototype definition:
- typedef fsm_rt_t demo_fsm_fn (fsm_demo_fsm_t *ptFSM);
- We can then use demo_fsm_fn to define function pointer
+           extern_fsm_implementation( demo_fsm );
+           we extern a function called:
+           fsm_rt_t demo_fsm( fsm_demo_fsm_t *ptFSM )
+           and a prototype definition:
+           typedef fsm_rt_t demo_fsm_fn (fsm_demo_fsm_t *ptFSM);
+           We can then use demo_fsm_fn to define function pointer
  */
 //!@{
 #define __extern_fsm_implementation(__NAME, ...)                                \
-typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );         \
-extern fsm_rt_t __NAME( fsm(__NAME) *ptFSM __VA_ARGS__ );
+        typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );         \
+        extern fsm_rt_t __NAME( fsm(__NAME) *ptFSM __VA_ARGS__ );
 #define extern_fsm_implementation(__NAME, ...)                                  \
-__extern_fsm_implementation(__NAME, __VA_ARGS__)
+        __extern_fsm_implementation(__NAME, __VA_ARGS__)
 //!@}
 
 #define call_fsm(__NAME, __FSM, ...)                                            \
-__NAME((__FSM) __VA_ARGS__)
+        __NAME((__FSM) __VA_ARGS__)
 
 #define state(__STATE, ...)                                                     \
-case __STATE:                                                           \
-{__VA_ARGS__;}
+        case __STATE:                                                           \
+            {__VA_ARGS__;}
 
 #define on_start(...)                       __VA_ARGS__
 
@@ -112,57 +112,57 @@ case __STATE:                                                           \
 
 
 #define update_state_to(__STATE)                                                \
-{ ptThis->chState = (__STATE); }
+        { ptThis->chState = (__STATE); }
 
 #define transfer_to(__STATE)                                                    \
-{ update_state_to(__STATE); fsm_on_going() }
+         { update_state_to(__STATE); fsm_on_going() } 
 
 
 #define fsm_initialiser(__NAME, ...)        __fsm_initialiser(__NAME, __VA_ARGS__)
 #define __fsm_initialiser(__NAME, ...)                                          \
-typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__);  \
-fsm(__NAME) *__NAME##_init(fsm(__NAME) *ptFSM __VA_ARGS__)              \
-{                                                                       \
-CLASS(fsm_##__NAME##_t) *ptThis = ( CLASS(fsm_##__NAME##_t) *)ptFSM;\
-if (NULL == ptThis) {                                               \
-return NULL;                                                    \
-}                                                                   \
-ptThis->chState = 0;
+        typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__);  \
+        fsm(__NAME) *__NAME##_init(fsm(__NAME) *ptFSM __VA_ARGS__)              \
+        {                                                                       \
+            CLASS(fsm_##__NAME##_t) *ptThis = ( CLASS(fsm_##__NAME##_t) *)ptFSM;\
+            if (NULL == ptThis) {                                               \
+                return NULL;                                                    \
+            }                                                                   \
+            ptThis->chState = 0;
 
 #define abort_init()     return NULL;
 
 #define init_body(...)                                                          \
-__VA_ARGS__                                                         \
-return ptFSM;                                                       \
-}
-
+            __VA_ARGS__                                                         \
+            return ptFSM;                                                       \
+        }
+            
 
 #define __init_fsm(__NAME, __FSM, ...)                                            \
-__NAME##_init((__FSM) __VA_ARGS__)
+            __NAME##_init((__FSM) __VA_ARGS__)
 #define init_fsm(__NAME, __FSM, ...)    __init_fsm(__NAME, __FSM, __VA_ARGS__)
 
 #define fsm_implementation(__NAME, ...)                                         \
-__implement_fsm(__NAME, __VA_ARGS__)
+        __implement_fsm(__NAME, __VA_ARGS__)
 
 #define implement_fsm(__NAME, ...)      __implement_fsm(__NAME, __VA_ARGS__)
 #define __implement_fsm(__NAME, ...)                                            \
-typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );             \
-fsm_rt_t __NAME( fsm(__NAME) *ptFSM __VA_ARGS__ )                           \
-{                                                                           \
-CLASS(fsm_##__NAME##_t) *ptThis = (CLASS(fsm_##__NAME##_t) *)ptFSM;     \
-if (NULL == ptThis) {                                                   \
-return fsm_rt_err;                                                  \
-}
+    typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );             \
+    fsm_rt_t __NAME( fsm(__NAME) *ptFSM __VA_ARGS__ )                           \
+    {                                                                           \
+        CLASS(fsm_##__NAME##_t) *ptThis = (CLASS(fsm_##__NAME##_t) *)ptFSM;     \
+        if (NULL == ptThis) {                                                   \
+            return fsm_rt_err;                                                  \
+        }                                                           
 
 #define body(...)                                                               \
-switch (ptThis->chState) {                                              \
-case 0:                                                             \
-ptThis->chState++;                                              \
-__VA_ARGS__                                                         \
-}                                                                       \
-\
-return fsm_rt_on_going;                                                 \
-}
+        switch (ptThis->chState) {                                              \
+            case 0:                                                             \
+                ptThis->chState++;                                              \
+            __VA_ARGS__                                                         \
+        }                                                                       \
+                                                                                \
+        return fsm_rt_on_going;                                                 \
+    }
 
 
 /*============================ TYPES =========================================*/
@@ -192,4 +192,3 @@ typedef enum {
 #endif
 
 /* EOF */
-

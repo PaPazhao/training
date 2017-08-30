@@ -8,6 +8,10 @@
 
 #include "./app_cfg.h"
 
+#ifndef DELAY_S
+#error Macro DELAY_S is not define
+#endif
+
 simple_fsm(delay_1s, 
     def_params(
         uint32_t wCounter;

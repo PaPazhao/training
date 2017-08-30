@@ -8,6 +8,7 @@
 
 #ifndef __test4A_h__
 #define __test4A_h__
+
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
 
@@ -17,5 +18,16 @@
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
 /*============================ PROTOTYPES ====================================*/
+
+/**
+ init task test4A
+ */
+extern void init_test4A();
+
+/**
+ task test4A
+ */
+extern void test4A();
+
 #endif /* test4A_h */
 /* EOF */
