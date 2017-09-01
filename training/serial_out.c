@@ -8,14 +8,14 @@
 
 #include "app_cfg.h"
 
-static uint8_t s_chframeBuf[] = "WORLD           Abd               WORLD               Abd3        wWORLD        WORLLD";
+static uint8_t s_chframeBuf[] = "WORLD    WORLD           Abd               WORLD               Abd3        wWORLD        WORLLD";
 static uint8_t s_chIndex = 0;
 
 bool serial_out(uint8_t chByte)
 {
     static bool s_bIsStart = false;
     static uint32_t s_wCount = 40;
-        // printf("\r\n                                seriout: %c -- %d, count: %d\r\n",chByte, s_bIsStart, s_wCount);
+
     if (s_bIsStart) {
         s_wCount = 40;
         s_bIsStart = false;
@@ -29,9 +29,7 @@ bool serial_out(uint8_t chByte)
             s_bIsStart = true;
         }
     }
-    // if (s_bIsStart) {
-    //     printf("\r\n                                seriout: %c over\r\n",chByte );
-    // }
+
     return s_bIsStart;
 }
 
@@ -51,7 +49,6 @@ bool serial_in(uint8_t *pchByte)
         if (s_chIndex < sizeof(s_chframeBuf)) {
             *pchByte = s_chframeBuf[s_chIndex];
             s_chIndex += 1;
-//            printf("\r\n-===-=-==============================%c \r\n", *pchByte);
             return true;
         } else {
             return false;

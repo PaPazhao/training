@@ -119,7 +119,6 @@ extern_fsm_implementation(test4B_check);
 extern_fsm_implementation(test4B_echo);
 
 /*============================ GLOBAL VARIABLES ==============================*/
-#define PRT(...)   // printf(__VA_ARGS__)
 
 /*============================ LOCAL VARIABLES ===============================*/
 
@@ -265,7 +264,6 @@ fsm_implementation(test4B_check)
             }
               
             MAIL_POST(&s_tMailEcho, &(this.chChar));
-            PRT("\r\n1: MAIL_POST: isOpen:%d - obj: %c\r\n", s_tMailEcho.bIsOpen, *(uint8_t *)s_tMailEcho.pTarget);
             transfer_to(CHECK);
         )
          
@@ -280,10 +278,10 @@ fsm_implementation(test4B_check)
         state(SEND_EVENT,
             if (ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
                 SET_EVENT(&s_tEventCheckSuccessed);
-                PRT("\r\n1: SEND_EVENT: bAutoReset:%d - bIsSet: %d\r\n", s_tEventCheckSuccessed.bAutoReset, s_tEventCheckSuccessed.bIsSet);
                 LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
                 fsm_cpl();
             }
+            
             fsm_on_going();
         )
     )
@@ -296,7 +294,7 @@ fsm_implementation(test4B_check)
  */
 fsm_implementation(test4B_print)
 
-    def_states( WAIT_EVENT, PRINT_HELLO, RESET )
+    def_states( WAIT_EVENT, PRINT_HELLO )
 
     body(
 
@@ -309,29 +307,21 @@ fsm_implementation(test4B_print)
                 LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
                 fsm_on_going();
             }
-                
-            LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
-            PRT("\r\n2: get event, ready to print Hello\r\n");
+              
             init_fsm(print_hello, &(this.fsmPrintHello));
             transfer_to(PRINT_HELLO);
         )
          
         state(PRINT_HELLO,
             if (fsm_rt_cpl == call_fsm(print_hello, &(this.fsmPrintHello))) {
-                update_state_to(RESET);
+                RESET_EVENT(&s_tEventCheckSuccessed);
+                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
+                fsm_cpl();
             }
 
             fsm_on_going();
         )
 
-        state(RESET,
-            if (ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
-                RESET_EVENT(&s_tEventCheckSuccessed);
-                PRT("\r\n2: print over reset event");
-                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
-                fsm_cpl();
-            }
-        )
     )   
 
 fsm_implementation(test4B_echo)
@@ -344,7 +334,7 @@ fsm_implementation(test4B_echo)
             if (MAIL_IS_OPEN(&s_tMailEcho)) {
                 fsm_on_going();
             }
-              PRT("\r\n3: GET MAIL: ready for echo");
+
             this.chEcho = *((uint8_t *)MAIL_OPEN(&s_tMailEcho));
             transfer_to(ECHO);
         )
@@ -356,7 +346,6 @@ fsm_implementation(test4B_echo)
 
             if (!WAIT_EVENT(&s_tEventCheckSuccessed)) {
                 if (SERIAL_OUT(this.chEcho)) {
-                    PRT("\r\n3: -------ECHO-%c\r\n",this.chEcho);
                     LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent); 
                     fsm_cpl();  
                 }
@@ -366,6 +355,7 @@ fsm_implementation(test4B_echo)
             fsm_on_going();
         )
     )
+
 /**
  init task test4B
  */
