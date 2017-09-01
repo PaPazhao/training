@@ -14,5 +14,7 @@
 #include "ooc.h"
 #include "simple_fsm.h"
 #include "event.h"
+#include "mail.h"
+#include "critical section.h"
 
 #endif /* print_string_h */

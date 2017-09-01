@@ -7,14 +7,15 @@
 //
 
 #include "app_cfg.h"
-#include "test4A/test4A.h"
+//#include "test4A/test4A.h"
+#include "test4B.h"
 
 int main(int argc, const char * argv[])
 {
-    init_test4A();
+    init_test4B();
     
     while (1) {
-        test4A();
+        test4B();
     }
  
     return 0;

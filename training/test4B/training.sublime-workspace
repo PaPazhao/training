@@ -1,0 +1,380 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"test",
+				"test4B_echo"
+			],
+			[
+				"ini",
+				"init_fsm"
+			],
+			[
+				"x",
+				"xxx"
+			],
+			[
+				"en",
+				"encode"
+			],
+			[
+				"or",
+				"original_url"
+			],
+			[
+				"pos",
+				"postId"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"acces",
+				"accessToken"
+			],
+			[
+				"var",
+				"var_dump"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app_cfg.h",
+			"settings":
+			{
+				"buffer_size": 261,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test4B.c",
+			"settings":
+			{
+				"buffer_size": 7072,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/han/Downloads/training/users/zhaoli/training/training/test4B/test4B.h",
+		"/Users/han/Downloads/training/users/zhaoli/training/training/test4B/test4B.c",
+		"/Users/han/Downloads/Koloda-master/Podfile",
+		"/Users/han/Desktop/Swift.playground/contents.xcplayground",
+		"/user:settiing",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/common/models/Post.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/common/models/Brand.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/controllers/PostController.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/post/update.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/post/_form.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views/home/comment.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/api/modules/v1/controllers/CommentController.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/common/models/Customer.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/web/index.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/config/main-local.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/web/css/common_v1.css",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views/daren/index.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/controllers/EventController.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views/event/index.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/config/main.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/view.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/create.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/common/models/Product.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/common/models/DarenRecommendArticle.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/_form.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/update.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/index.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/daren-recommend-article/_search.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/controllers/DarenRecommendArticleController.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend/views/layouts/main.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/api/modules/v1/controllers/MovieLinesController.php",
+		"/Users/han/PHPProject/52toys/dev/web/yii2toys/api/modules/v1/controllers/DarenRecommendArticleController.php"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/common",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/backend",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/mall",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club",
+			"/Users/han/AppProject/myApp/www",
+			"/Users/han/AppProject/myApp/www/templates",
+			"/Users/han/AppProject/myApp/www",
+			"/Users/han/AppProject/myApp/www/templates",
+			"/Users/han/PHPProject/52toys/dev/web/yii2toys/api/modules/v1/controllers"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"fsm_implementation",
+			"__NAME",
+			"fsm(name)",
+			"##",
+			"__NAME",
+			"\\",
+			"##",
+			"\\",
+			"__NAME",
+			"\\",
+			"fsm(name)",
+			"##",
+			"__NAME",
+			"__FSM_TYPE",
+			"\\\\/",
+			"\\\\/\\\\/",
+			"newTopicPanel",
+			"\"fid\": 8",
+			"后期",
+			"\\\"",
+			"\\\\/",
+			"\\\"",
+			"\"",
+			"\\",
+			"iframe",
+			"\"",
+			"statuses",
+			"title",
+			"\"",
+			"[index]",
+			"\"",
+			"video",
+			"img",
+			"ptime",
+			"title",
+			"comment_count",
+			"\\&quot;",
+			"content",
+			"keywords",
+			"description",
+			"dataPro",
+			"YII_ENV",
+			"formatDate",
+			"w200",
+			"LoginForm",
+			"isset",
+			"previous-title",
+			"Chats",
+			"Back",
+			"Chats",
+			"Chat",
+			"title",
+			"name",
+			"Playlists",
+			"chat",
+			"chats",
+			"error",
+			"api.52toys.com/index.php?r=",
+			"product_id",
+			"addProduct",
+			"files"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"name",
+			"fsm_name_t",
+			"",
+			"name",
+			" ",
+			"name",
+			"fsm_name_t",
+			" ",
+			"fsm_name_t",
+			"",
+			"name",
+			"fsm(__NAME)",
+			"/",
+			"//",
+			"\"",
+			"/",
+			"\"",
+			"\\\"",
+			"",
+			"\\\"",
+			"",
+			"\\\"",
+			"",
+			"api.52toys.com/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app_cfg.h",
+					"settings":
+					{
+						"buffer_size": 261,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								261,
+								261
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test4B.c",
+					"settings":
+					{
+						"buffer_size": 7072,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1850,
+								1785
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 706.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 288.0,
+	"status_bar_visible": true
+}

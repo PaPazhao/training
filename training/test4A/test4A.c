@@ -234,7 +234,7 @@ fsm_implementation(test4A_print)
 /**
  init task test4A
  */
-void init_test4A() {
+void init_test4A(void) {
     init_fsm(test4A_check, &s_fsmTest4ACheck);
     init_fsm(test4A_print, &s_fsmTest4APrint);
     INIT_EVENT(&s_tCheckOver, false, AUTOSET);
@@ -243,7 +243,7 @@ void init_test4A() {
 /**
  task test4A
  */
-void test4A() {
+void test4A(void) {
     call_fsm(test4A_check, &(s_fsmTest4ACheck));
     call_fsm(test4A_print, &(s_fsmTest4APrint));
 }

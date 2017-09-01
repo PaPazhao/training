@@ -1,16 +1,16 @@
 //
-//  test4A.h
+//  test4B.h
 //  training
 //
 //  Created by zhaoli on 2017/8/25.
 //  Copyright © 2017年 zhaoli. All rights reserved.
 //
 
-#ifndef __test4A_h__
-#define __test4A_h__
+#ifndef __TEST_4B_H__
+#define __TEST_4B_H__
 
 /*============================ INCLUDES ======================================*/
-#include "./app_cfg.h"
+//#include "./app_cfg.h"
 
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
@@ -20,14 +20,14 @@
 /*============================ PROTOTYPES ====================================*/
 
 /**
- init task test4A
+ init task test4B
  */
-extern void init_test4A(void);
+extern void init_test4B(void);
 
 /**
- task test4A
+ task test4B
  */
-extern void test4A(void);
+extern void test4B(void);
 
-#endif /* test4A_h */
+#endif /* test4B_h */
 /* EOF */

@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33363F1B1F50101A000346B6 /* test4A.c in Sources */ = {isa = PBXBuildFile; fileRef = 33363F191F50101A000346B6 /* test4A.c */; };
+		3304F1B21F590DF100D415BE /* mail.c in Sources */ = {isa = PBXBuildFile; fileRef = 3304F1B01F590DF100D415BE /* mail.c */; };
+		3304F1B31F5914B800D415BE /* critical_section.c in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2F55F1F5837F9004EA6A7 /* critical_section.c */; };
 		339438881F4D2FCC00790911 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438871F4D2FCC00790911 /* main.c */; };
 		3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438911F4D2FDF00790911 /* delay_1s.c */; };
 		3394389C1F4D2FDF00790911 /* serial_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438931F4D2FDF00790911 /* serial_out.c */; };
 		3394389D1F4D2FDF00790911 /* test1A.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438971F4D2FDF00790911 /* test1A.c */; };
 		5ED2F55C1F508E00004EA6A7 /* event.c in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2F55A1F508E00004EA6A7 /* event.c */; };
+		5ED2F5641F585352004EA6A7 /* test4B.c in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2F5621F584EDB004EA6A7 /* test4B.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +30,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3304F1B01F590DF100D415BE /* mail.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mail.c; sourceTree = "<group>"; };
+		3304F1B11F590DF100D415BE /* mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail.h; sourceTree = "<group>"; };
 		33363F191F50101A000346B6 /* test4A.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test4A.c; sourceTree = "<group>"; };
 		33363F1A1F50101A000346B6 /* test4A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test4A.h; sourceTree = "<group>"; };
 		33363F1C1F50102C000346B6 /* app_cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
@@ -46,6 +50,11 @@
 		3394389A1F4D2FDF00790911 /* simple_fsm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = simple_fsm.h; sourceTree = "<group>"; };
 		5ED2F55A1F508E00004EA6A7 /* event.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = event.c; sourceTree = "<group>"; };
 		5ED2F55B1F508E00004EA6A7 /* event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
+		5ED2F55E1F5837F9004EA6A7 /* critical section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "critical section.h"; sourceTree = "<group>"; };
+		5ED2F55F1F5837F9004EA6A7 /* critical_section.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = critical_section.c; sourceTree = "<group>"; };
+		5ED2F5611F584EDB004EA6A7 /* app_cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
+		5ED2F5621F584EDB004EA6A7 /* test4B.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = test4B.c; sourceTree = "<group>"; };
+		5ED2F5631F584EDB004EA6A7 /* test4B.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test4B.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,9 +105,13 @@
 				339438871F4D2FCC00790911 /* main.c */,
 				3394388F1F4D2FDF00790911 /* delay */,
 				333D6C9B1F5000AD008A56F6 /* test4A */,
+				5ED2F5601F584EDB004EA6A7 /* test4B */,
 				339438951F4D2FDF00790911 /* test1A */,
+				5ED2F55D1F5837F9004EA6A7 /* critical_section */,
 				5ED2F55A1F508E00004EA6A7 /* event.c */,
 				5ED2F55B1F508E00004EA6A7 /* event.h */,
+				3304F1B01F590DF100D415BE /* mail.c */,
+				3304F1B11F590DF100D415BE /* mail.h */,
 			);
 			path = training;
 			sourceTree = "<group>";
@@ -121,6 +134,25 @@
 				339438981F4D2FDF00790911 /* test1A.h */,
 			);
 			path = test1A;
+			sourceTree = "<group>";
+		};
+		5ED2F55D1F5837F9004EA6A7 /* critical_section */ = {
+			isa = PBXGroup;
+			children = (
+				5ED2F55E1F5837F9004EA6A7 /* critical section.h */,
+				5ED2F55F1F5837F9004EA6A7 /* critical_section.c */,
+			);
+			path = critical_section;
+			sourceTree = "<group>";
+		};
+		5ED2F5601F584EDB004EA6A7 /* test4B */ = {
+			isa = PBXGroup;
+			children = (
+				5ED2F5611F584EDB004EA6A7 /* app_cfg.h */,
+				5ED2F5621F584EDB004EA6A7 /* test4B.c */,
+				5ED2F5631F584EDB004EA6A7 /* test4B.h */,
+			);
+			path = test4B;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,10 +213,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3304F1B31F5914B800D415BE /* critical_section.c in Sources */,
+				5ED2F5641F585352004EA6A7 /* test4B.c in Sources */,
 				5ED2F55C1F508E00004EA6A7 /* event.c in Sources */,
 				3394389C1F4D2FDF00790911 /* serial_out.c in Sources */,
 				339438881F4D2FCC00790911 /* main.c in Sources */,
-				33363F1B1F50101A000346B6 /* test4A.c in Sources */,
+				3304F1B21F590DF100D415BE /* mail.c in Sources */,
 				3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */,
 				3394389D1F4D2FDF00790911 /* test1A.c in Sources */,
 			);
