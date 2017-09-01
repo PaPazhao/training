@@ -51,7 +51,7 @@ bool serial_in(uint8_t *pchByte)
         if (s_chIndex < sizeof(s_chframeBuf)) {
             *pchByte = s_chframeBuf[s_chIndex];
             s_chIndex += 1;
-            printf("\r\n-===-=-==============================%c \r\n", *pchByte);
+//            printf("\r\n-===-=-==============================%c \r\n", *pchByte);
             return true;
         } else {
             return false;

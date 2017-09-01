@@ -8,6 +8,7 @@
 #include "test4B.h"
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
+
 /*============================ MACROS ========================================*/
 #ifndef SERIAL_IN
 #define SERIAL_IN(__BYTE)               serial_in(__BYTE)
@@ -58,6 +59,7 @@ init_event(__EVENT,__EVENT_VALUE,__MANUAL)
 #ifndef MAIL_IS_OPEN
 #define MAIL_IS_OPEN(__MAIL)            mail_isOpen(__MAIL)
 #endif
+
 /*============================ MACROFIED FUNCTIONS ===========================*/
 
 /**
@@ -106,6 +108,10 @@ extern bool serial_in(uint8_t *pchByte);
 extern void init_event(event_t *ptEvent,bool bInitValue,even_model_t tModel);
 extern void set_event(event_t *ptEvent);
 extern bool wait_event(event_t *ptEvent);
+extern void mail_init(mail_t *pTarget);
+extern void* mail_open(mail_t *pTarget);
+extern void mail_post(mail_t *pTarget, void *tObj);
+extern bool mail_isOpen(mail_t *pTarget);
 
 extern_fsm_implementation(check_world, args(uint8_t chByte));
 extern_fsm_implementation(test4B_print);
@@ -113,13 +119,15 @@ extern_fsm_implementation(test4B_check);
 extern_fsm_implementation(test4B_echo);
 
 /*============================ GLOBAL VARIABLES ==============================*/
-#define PRT(...)    printf(__VA_ARGS__)
+#define PRT(...)   // printf(__VA_ARGS__)
+
 /*============================ LOCAL VARIABLES ===============================*/
 
 static fsm(test4B_check) s_fsmTest4BCheck;
 static fsm(test4B_print) s_fsmTest4BPrint;
 static fsm(test4B_echo) s_fsmTest4BEcho;
 
+// critical check event
 static critical_sector_t s_tCriticalEvent;
 
 // mail: send to echo
@@ -149,7 +157,6 @@ void tedst4B(void);
 fsm_initialiser(check_world)
     init_body()
 
-
 /**
  define fsm initialiser
 
@@ -159,7 +166,6 @@ fsm_initialiser(check_world)
 fsm_initialiser(test4B_check)
     init_body()
 
-
 /**
  define fsm test4B_echo,echo serial in char
 
@@ -168,8 +174,6 @@ fsm_initialiser(test4B_check)
  */
 fsm_initialiser(test4B_echo)
     init_body()
-
-
 
 /**
  define fsm check_world,check 'world'
@@ -292,7 +296,7 @@ fsm_implementation(test4B_check)
  */
 fsm_implementation(test4B_print)
 
-    def_states( WAIT_EVENT, PRINT_HELLO )
+    def_states( WAIT_EVENT, PRINT_HELLO, RESET )
 
     body(
 
@@ -314,15 +318,19 @@ fsm_implementation(test4B_print)
          
         state(PRINT_HELLO,
             if (fsm_rt_cpl == call_fsm(print_hello, &(this.fsmPrintHello))) {
-                PRT("\r\n2: print over reset event");
-                if (ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
-                    RESET_EVENT(&s_tEventCheckSuccessed);
-                    LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
-                    fsm_cpl();
-                }
+                update_state_to(RESET);
             }
 
             fsm_on_going();
+        )
+
+        state(RESET,
+            if (ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
+                RESET_EVENT(&s_tEventCheckSuccessed);
+                PRT("\r\n2: print over reset event");
+                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
+                fsm_cpl();
+            }
         )
     )   
 
