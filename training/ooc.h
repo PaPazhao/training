@@ -140,8 +140,8 @@
 #define DEF_STRUCTURE(__NAME,...)                   \
             typedef struct __NAME __NAME;           \
             __VA_ARGS__                             \
-            struct __NAME {
-
+            struct __NAME {                         
+                        
 #define END_DEF_STRUCTURE(__NAME)                   \
             };
 //! @}
@@ -183,10 +183,134 @@
 
 /*============================ TYPES =========================================*/
 
-/*============================ GLOBAL VARIABLES ==============================*/
-/*============================ LOCAL VARIABLES ===============================*/
-/*============================ PROTOTYPES ====================================*/
+
+//typedef fsm_rt_t DELEGATE_HANDLE_FUNC(void *pArg, void *pParam);
+
+//DECLARE_CLASS( DELEGATE_HANDLE )
+////! \name general event handler
+////! @{
+//EXTERN_CLASS( DELEGATE_HANDLE )
+//    DELEGATE_HANDLE_FUNC   *fnHandler;      //!< event handler
+//    void                   *pArg;           //!< Argument
+//    DELEGATE_HANDLE        *ptNext;         //!< next 
+//END_EXTERN_CLASS(DELEGATE_HANDLE)
+////! @}
+
+//DECLARE_CLASS( DELEGATE )
+////! \name event
+////! @{
+//EXTERN_CLASS(DELEGATE)
+//    DELEGATE_HANDLE     *ptEvent;
+//    DELEGATE_HANDLE     *ptBlockedList;
+//    DELEGATE_HANDLE     **pptHandler;
+//END_EXTERN_CLASS(DELEGATE)
+////! @}
+
+////! \name interface: u32_property_t
+////! @{
+//DEF_INTERFACE(u32_property_t)
+//    bool (*Set)(uint32_t wValue);
+//    uint32_t (*Get)(void);
+//END_DEF_INTERFACE(u32_property_t)
+////! @}
+
+////! \name interface: u16_property_t
+////! @{
+//DEF_INTERFACE(u16_property_t)
+//    bool (*Set)(uint_fast16_t wValue);
+//    uint_fast16_t (*Get)(void);
+//END_DEF_INTERFACE(u16_property_t)
+////! @}
+
+////! \name interface: u8_property_t
+////! @{
+//DEF_INTERFACE(u8_property_t)
+//    bool (*Set)(uint_fast8_t wValue);
+//    uint_fast8_t (*Get)(void);
+//END_DEF_INTERFACE(u8_property_t)
+////! @}
 
 
+////! \name interface: i32_property_t
+////! @{
+//DEF_INTERFACE(i32_property_t)
+//    bool (*Set)(int32_t wValue);
+//    int32_t (*Get)(void);
+//END_DEF_INTERFACE(i32_property_t)
+////! @}
+
+////! \name interface: i16_property_t
+////! @{
+//DEF_INTERFACE(i16_property_t)
+//    bool (*Set)(int_fast16_t wValue);
+//    int_fast16_t (*Get)(void);
+//END_DEF_INTERFACE(i16_property_t)
+////! @}
+
+////! \name interface: u8_property_t
+////! @{
+//DEF_INTERFACE(i8_property_t)
+//    bool (*Set)(int_fast8_t wValue);
+//    int_fast8_t (*Get)(void);
+//END_DEF_INTERFACE(i8_property_t)
+////! @}
+
+////! \name interface: bool_property_t
+////! @{
+//DEF_INTERFACE(bool_property_t)
+//    bool (*Set)(bool bValue);
+//    bool (*Get)(void);
+//END_DEF_INTERFACE(bool_property_t)
+////! @}
+
+////! \name interface: bool_property_t
+////! @{
+//DEF_INTERFACE(en_property_t)
+//    bool (*Enable)(void);
+//    bool (*Disable)(void);
+//END_DEF_INTERFACE(en_property_t)
+////! @}
+
+
+///*============================ GLOBAL VARIABLES ==============================*/
+///*============================ LOCAL VARIABLES ===============================*/
+///*============================ PROTOTYPES ====================================*/
+
+///*! \brief initialize event 
+// *! \param ptEvent target event
+// *! \return the address of event item
+// */
+//extern DELEGATE *delegate_init(DELEGATE *ptEvent);
+
+///*! \brief initialize event handler item
+// *! \param ptHandler the target event handler item
+// *! \param fnRoutine event handler routine
+// *! \param pArg handler extra arguments
+// *! \return the address of event handler item
+// */
+//extern DELEGATE_HANDLE *delegate_handler_init(
+//    DELEGATE_HANDLE *ptHandler, DELEGATE_HANDLE_FUNC *fnRoutine, void *pArg);
+
+///*! \brief register event handler to specified event
+// *! \param ptEvent target event
+// *! \param ptHandler target event handler
+// *! \return access result
+// */
+//extern gsf_err_t register_delegate_handler(DELEGATE *ptEvent, DELEGATE_HANDLE *ptHandler);
+
+///*! \brief unregister a specified event handler
+// *! \param ptEvent target event
+// *! \param ptHandler target event handler
+// *! \return access result
+// */
+//extern gsf_err_t unregister_delegate_handler( DELEGATE *ptEvent, DELEGATE_HANDLE *ptHandler);
+
+///*! \brief raise target event
+// *! \param ptEvent the target event
+// *! \param pArg event argument
+// *! \return access result
+// */
+//extern fsm_rt_t invoke_delegate( DELEGATE *ptEvent, void *pParam);
 #endif
 /* EOF */
+

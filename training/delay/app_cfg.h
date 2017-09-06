@@ -12,6 +12,6 @@
 
 #include "../app_cfg.h"
  
-#define DELAY_S     (100ul)
+#define DELAY_S     (5ul)
 
 #endif /* print_string_h */

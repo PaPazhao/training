@@ -26,6 +26,7 @@ fsm_implementation(delay_1s)
     def_states(DELAY_1S)
 
     body(
+         
         state(DELAY_1S,
             if (!this.wCounter) {
                 fsm_cpl();

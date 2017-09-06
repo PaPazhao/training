@@ -29,7 +29,8 @@
  
  @param pTarget obj
  */
-void mail_init(mail_t *pTarget) {
+void mail_init(mail_t *pTarget)
+{
     if (pTarget) {
         pTarget->bIsOpen = true;
         pTarget->pTarget = NULL;
@@ -42,7 +43,8 @@ void mail_init(mail_t *pTarget) {
  @param pTarget obj
  @return target
  */
-void* mail_open(mail_t *pTarget) {
+void* mail_open(mail_t *pTarget)
+{
     
     if (NULL == pTarget) {
         return NULL;
@@ -62,7 +64,8 @@ void* mail_open(mail_t *pTarget) {
  @param pTarget mail obj pointer
  @param tObj content obj pointer
  */
-void mail_post(mail_t *pTarget, void *tObj) {
+void mail_post(mail_t *pTarget, void *tObj)
+{
     
     if (pTarget && tObj) {
         pTarget->bIsOpen = false;
@@ -76,7 +79,8 @@ void mail_post(mail_t *pTarget, void *tObj) {
  @param pTarget mail obj pointer
  @return bool
  */
-bool mail_isOpen(mail_t *pTarget) {
+bool mail_isOpen(mail_t *pTarget)
+{
     
     if (pTarget) {
         return pTarget->bIsOpen;

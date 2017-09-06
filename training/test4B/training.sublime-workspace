@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"def",
+				"define"
+			],
+			[
+				"ch",
+				"chEcho"
+			],
+			[
+				"pch",
+				"pchEcho"
+			],
+			[
+				"s_t",
+				"s_tMailEcho"
+			],
+			[
+				"MAIL",
+				"MAIL_INIT"
+			],
+			[
+				"Sr",
+				"SERIAL_OUT"
+			],
+			[
 				"test",
 				"test4B_echo"
 			],
@@ -55,7 +79,15 @@
 			"file": "test4B.c",
 			"settings":
 			{
-				"buffer_size": 7072,
+				"buffer_size": 8303,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/han/Downloads/training/users/zhaoli/training/training/serial_out.c",
+			"settings":
+			{
+				"buffer_size": 1629,
 				"line_ending": "Unix"
 			}
 		}
@@ -123,7 +155,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views",
@@ -145,6 +177,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"PRT",
+			"fsmCheck_world",
+			"2:",
+			"s_tCriticalPrinter",
+			"printf",
+			"2: get event, ready ",
 			"fsm_implementation",
 			"__NAME",
 			"fsm(name)",
@@ -213,6 +251,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"fsmCheckWord",
+			"s_tCriticalEvent",
+			"PRT",
 			"name",
 			"fsm_name_t",
 			"",
@@ -281,15 +322,15 @@
 					"file": "test4B.c",
 					"settings":
 					{
-						"buffer_size": 7072,
+						"buffer_size": 8303,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1850,
-								1785
+								602,
+								602
 							]
 						],
 						"settings":
@@ -299,16 +340,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 706.0,
+						"translation.y": 4816.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/han/Downloads/training/users/zhaoli/training/training/serial_out.c",
+					"settings":
+					{
+						"buffer_size": 1629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								237,
+								237
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -329,18 +393,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -350,6 +407,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
 	"replace":
 	{
 		"height": 64.0

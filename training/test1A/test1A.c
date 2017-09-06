@@ -115,16 +115,17 @@ fsm_implementation(print_hello)
             if (!SERIAL_OUT('\n')) {
                 fsm_on_going();
             }
-
+       
+              fsm_cpl();
             init_fsm(delay_1s, &(this.fsmDelay));
             update_state_to(DELAY)
         )
 
         state(DELAY,
-            if (fsm_rt_cpl == call_fsm(delay_1s, &(this.fsmDelay) )) {
+            if (fsm_rt_cpl == call_fsm(delay_1s, &(this.fsmDelay))) {
                 fsm_cpl();
             }
-
+ 
             fsm_on_going();
         )
     )

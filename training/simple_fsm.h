@@ -59,9 +59,11 @@
             __VA_ARGS__                                             \
         END_EXTERN_CLASS(__FSM_TYPE)                                
 
+#define __declare_simple_fsm(__FSM_TYPE)                            \
+        DECLARE_CLASS(__FSM_TYPE)
+#define declare_simple_fsm(__NAME)  __declare_simple_fsm(fsm(__NAME))
 
-
-#define extern_simple_fsm(__NAME, ...)                                          \
+#define extern_simple_fsm(__NAME, ...)                              \
             __extern_simple_fsm(fsm(__NAME), __VA_ARGS__)  
 
 /*! \brief extern fsm initialisation function and provide function prototye 
@@ -120,7 +122,7 @@
 
 #define fsm_initialiser(__NAME, ...)        __fsm_initialiser(__NAME, __VA_ARGS__)
 #define __fsm_initialiser(__NAME, ...)                                          \
-        typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__);  \
+        /*typedef fsm(__NAME) *__NAME##_init_fn(fsm(__NAME) *ptFSM __VA_ARGS__); */ \
         fsm(__NAME) *__NAME##_init(fsm(__NAME) *ptFSM __VA_ARGS__)              \
         {                                                                       \
             CLASS(fsm_##__NAME##_t) *ptThis = ( CLASS(fsm_##__NAME##_t) *)ptFSM;\
@@ -137,7 +139,7 @@
         }
             
 
-#define __init_fsm(__NAME, __FSM, ...)                                            \
+#define __init_fsm(__NAME, __FSM, ...)                                          \
             __NAME##_init((__FSM) __VA_ARGS__)
 #define init_fsm(__NAME, __FSM, ...)    __init_fsm(__NAME, __FSM, __VA_ARGS__)
 
@@ -146,7 +148,7 @@
 
 #define implement_fsm(__NAME, ...)      __implement_fsm(__NAME, __VA_ARGS__)
 #define __implement_fsm(__NAME, ...)                                            \
-    typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );             \
+    /*typedef fsm_rt_t __NAME##_fn( fsm(__NAME) *ptFSM __VA_ARGS__ );*/         \
     fsm_rt_t __NAME( fsm(__NAME) *ptFSM __VA_ARGS__ )                           \
     {                                                                           \
         CLASS(fsm_##__NAME##_t) *ptThis = (CLASS(fsm_##__NAME##_t) *)ptFSM;     \
@@ -166,7 +168,6 @@
 
 
 /*============================ TYPES =========================================*/
-
 #ifndef __FSM_RT_TYPE__
 #define __FSM_RT_TYPE__
 //! \name finit state machine state

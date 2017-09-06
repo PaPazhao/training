@@ -44,22 +44,6 @@ init_event(__EVENT,__EVENT_VALUE,__MANUAL)
 init_event(__EVENT,__EVENT_VALUE,__MANUAL)
 #endif
 
-#ifndef MAIL_INIT
-#define MAIL_INIT(__MAIL)               mail_init(__MAIL)
-#endif
-
-#ifndef MAIL_OPEN
-#define MAIL_OPEN(__MAIL)               mail_open(__MAIL)
-#endif
-
-#ifndef MAIL_POST
-#define MAIL_POST(__MAIL, __OBJ)        mail_post(__MAIL, __OBJ)
-#endif
-
-#ifndef MAIL_IS_OPEN
-#define MAIL_IS_OPEN(__MAIL)            mail_isOpen(__MAIL)
-#endif
-
 /*============================ MACROFIED FUNCTIONS ===========================*/
 
 /**
@@ -108,10 +92,6 @@ extern bool serial_in(uint8_t *pchByte);
 extern void init_event(event_t *ptEvent,bool bInitValue,even_model_t tModel);
 extern void set_event(event_t *ptEvent);
 extern bool wait_event(event_t *ptEvent);
-extern void mail_init(mail_t *pTarget);
-extern void* mail_open(mail_t *pTarget);
-extern void mail_post(mail_t *pTarget, void *tObj);
-extern bool mail_isOpen(mail_t *pTarget);
 
 extern_fsm_implementation(check_world, args(uint8_t chByte));
 extern_fsm_implementation(test4B_print);
@@ -121,16 +101,10 @@ extern_fsm_implementation(test4B_echo);
 /*============================ GLOBAL VARIABLES ==============================*/
 
 /*============================ LOCAL VARIABLES ===============================*/
-
 static fsm(test4B_check) s_fsmTest4BCheck;
 static fsm(test4B_print) s_fsmTest4BPrint;
 static fsm(test4B_echo) s_fsmTest4BEcho;
-
-// critical check event
-static critical_sector_t s_tCriticalEvent;
-
-// mail: send to echo
-static mail_t s_tMailEcho;
+static uint8_t *s_pchChar = NULL;
 
 // event: check word successed
 static event_t s_tEventCheckSuccessed;
@@ -145,7 +119,7 @@ void init_test4B(void);
  task test4B
  */
 void tedst4B(void);
-
+#define  PRN(...) printf(__VA_ARGS__)
 /*============================ FSM_initialiser ================================*/
 /**
  define fsm check_world,check 'world'
@@ -250,38 +224,42 @@ fsm_implementation(check_world, args(uint8_t chByte))
  */
 fsm_implementation(test4B_check)
     
-    def_states( GET_CHAR, CHECK, SEND_EVENT )
+    def_states( GET_CHAR, CHECK,WAIT_AND_SETEVENT )
 
     body(
 
         on_start(
             init_fsm(check_world, &(this.fsmCheck_world));
+                 PRN("\r\n test4B_check    test4B_check: 1 - SERIAL_IN wait");
         )
 
         state(GET_CHAR,
             if ( !SERIAL_IN(&(this.chChar)) ) {
                 fsm_on_going();
             }
-              
-            MAIL_POST(&s_tMailEcho, &(this.chChar));
-            transfer_to(CHECK);
+            s_pchChar = &this.chChar;
+ 
+              PRN("\r\n test4B_check    test4B_check: 2 - SERIAL_IN %c start to check", *s_pchChar);
+            update_state_to(CHECK);
         )
          
         state(CHECK,
             if (fsm_rt_cpl == call_fsm(check_world, &(this.fsmCheck_world), args(this.chChar))) {
-                transfer_to(SEND_EVENT);
+                PRN("\r\n test4B_check    test4B_check: 3 - CHECK over, wait evet reset");
+                update_state_to(WAIT_AND_SETEVENT);
             } else {
                 transfer_to(GET_CHAR);
             }
         )
 
-        state(SEND_EVENT,
-            if (ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
+        state(WAIT_AND_SETEVENT,
+            if (!WAIT_EVENT(&s_tEventCheckSuccessed)) {
+                
                 SET_EVENT(&s_tEventCheckSuccessed);
-                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
+                PRN("\r\n test4B_check    test4B_check: 4 - SET_EVENT over");
                 fsm_cpl();
             }
-            
+
             fsm_on_going();
         )
     )
@@ -297,31 +275,27 @@ fsm_implementation(test4B_print)
     def_states( WAIT_EVENT, PRINT_HELLO )
 
     body(
-
+         on_start(
+         PRN("\r\n test4B_print        test4B_print: 1 - wait event");
+         )
         state(WAIT_EVENT,
-            if (!ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
-                fsm_on_going();
-            }
-
             if (!WAIT_EVENT(&s_tEventCheckSuccessed)) {
-                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
                 fsm_on_going();
             }
-              
+            PRN("\r\n test4B_print        test4B_print: 2 - PRINT_HELLO start\r\n");
             init_fsm(print_hello, &(this.fsmPrintHello));
-            transfer_to(PRINT_HELLO);
+            update_state_to(PRINT_HELLO);
         )
          
         state(PRINT_HELLO,
             if (fsm_rt_cpl == call_fsm(print_hello, &(this.fsmPrintHello))) {
                 RESET_EVENT(&s_tEventCheckSuccessed);
-                LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent);
+                PRN("\r\n test4B_print        test4B_print: 2 - PRINT_HELLO over");
                 fsm_cpl();
             }
 
             fsm_on_going();
         )
-
     )   
 
 fsm_implementation(test4B_echo)
@@ -329,29 +303,31 @@ fsm_implementation(test4B_echo)
     def_states( WAIT_MAIL, ECHO )
     
     body(
-
+         on_start(
+         PRN("\r\n test4B_echo            test4B_echo: 1 - wait mail");
+         )
         state(WAIT_MAIL,
-            if (MAIL_IS_OPEN(&s_tMailEcho)) {
+ 
+            if (NULL == s_pchChar) {
                 fsm_on_going();
             }
 
-            this.chEcho = *((uint8_t *)MAIL_OPEN(&s_tMailEcho));
-            transfer_to(ECHO);
+              PRN("\r\n test4B_echo            test4B_echo: 2 - event is set, waitng....");
+            this.chEcho = *s_pchChar;
+            update_state_to(ECHO);
+              printf("       event - is - set -- ..................\r\n");
         )
 
         state(ECHO,
-            if (!ENTER_CRITICAL_SECTOR(&s_tCriticalEvent)) {
-                fsm_on_going();
-            }
-
             if (!WAIT_EVENT(&s_tEventCheckSuccessed)) {
+                
                 if (SERIAL_OUT(this.chEcho)) {
-                    LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent); 
-                    fsm_cpl();  
+                    printf(" --- SERIAL_OUT `%c`\r\n",this.chEcho);
+                    s_pchChar = NULL;
+                    fsm_cpl();
                 }
             }
-
-            LEAVE_CRITICAL_SECTOR(&s_tCriticalEvent); 
+            
             fsm_on_going();
         )
     )
@@ -359,20 +335,20 @@ fsm_implementation(test4B_echo)
 /**
  init task test4B
  */
-void init_test4B(void) {
+void init_test4B(void)
+{
     init_fsm(test4B_check, &s_fsmTest4BCheck);
     init_fsm(test4B_print, &s_fsmTest4BPrint);
     init_fsm(test4B_echo, &s_fsmTest4BEcho);
     
-    INIT_CRITICAL_SECTOR(&s_tCriticalEvent);
     INIT_EVENT(&s_tEventCheckSuccessed, false, MANUAL);
-    MAIL_INIT(&s_tMailEcho);
 }
 
 /**
  task test4B
  */
-void test4B(void) {
+void test4B(void)
+{
     call_fsm(test4B_check, &(s_fsmTest4BCheck));
     call_fsm(test4B_print, &(s_fsmTest4BPrint));
     call_fsm(test4B_echo, &(s_fsmTest4BEcho));
