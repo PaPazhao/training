@@ -18,28 +18,28 @@
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
 /*============================ PROTOTYPES ====================================*/
-// interface 
-DECLARE_CLASS(queue_t)
-DEF_INTERFACE(i_queue_t)
+// interface
+declare_class(queue_t)
+def_interface(i_queue_t)
 
     bool (*Dequeue)(queue_t *ptQueue, void *ptStream);
     bool (*Enqueue)(queue_t *ptQueue, void *ptStream);
 
-END_DEF_INTERFACE(i_queue_t)
+end_def_interface(i_queue_t)
 
 // protected 的属性、方法
-DECLARE_PROTECTED(queue_t)
-EXTERN_PROTECTED(queue_t)
+declare_protected(queue_t)
+extern_protected(queue_t)
 
     uint16_t hwItemSize;
 
-END_EXTERN_PROTECTED(queue_t)
+end_extern_protected(queue_t)
 
 // 抽象类 queue_t
-EXTERN_CLASS(queue_t,  
-    WHICH(  Object *ptType; 
-            INHERIT( PROTECTED(queue_t))
-            IMPLEMENT(i_queue_t)))
+extern_class(queue_t,
+    which(  Object *ptType;
+            inherit( protected(queue_t))
+            implement(i_queue_t)))
 
     uint8_t *pchBuffer;
     uint16_t hwSize;
@@ -47,7 +47,7 @@ EXTERN_CLASS(queue_t,
     uint16_t hwTail;
     uint16_t hwLength;
     
-END_EXTERN_CLASS(queue_t, WHICH(  Object *ptType;  INHERIT(PROTECTED(queue_t)) IMPLEMENT(i_queue_t)))
+end_extern_class(queue_t, which(  Object *ptType;  inherit(protected(queue_t)) implement(i_queue_t)))
 
 #endif
 /* EOF */

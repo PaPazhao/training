@@ -12,10 +12,10 @@
 #include "__common_queue.h"
 
 // 抽象类 queue_t
-EXTERN_CLASS(queue_t,
-    WHICH(  Object *ptType;
-            INHERIT(INTERNAL_PROTECTED(queue_t))
-            IMPLEMENT(i_queue_t)))
+extern_class(queue_t,
+    which(  Object *ptType;
+            inherit(internal_protected(queue_t))
+            implement(i_queue_t)))
 
     uint8_t *pchBuffer;
     uint16_t hwSize;
@@ -23,7 +23,7 @@ EXTERN_CLASS(queue_t,
     uint16_t hwTail;
     uint16_t hwLength;
 
-END_EXTERN_CLASS(queue_t, WHICH( Object *ptType; INHERIT(INTERNAL_PROTECTED(queue_t)) IMPLEMENT(i_queue_t)))
+end_extern_class(queue_t, which( Object *ptType; inherit(internal_protected(queue_t)) implement(i_queue_t)))
 
 
 #endif /* Header_h */

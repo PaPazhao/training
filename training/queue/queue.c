@@ -13,11 +13,11 @@
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
 /*============================ TYPES =========================================*/
-DECLARE_CLASS(queue_t)
-DEF_CLASS(queue_t, 
-    WHICH(  Object *ptType; 
-            INHERIT(INTERNAL_PROTECTED(queue_t ))
-            IMPLEMENT(i_queue_t)))
+declare_class(queue_t)
+def_class(queue_t, 
+    which(  Object *ptType;
+            inherit(internal_protected(queue_t ))
+            implement(i_queue_t)))
 
     uint8_t *pchBuffer;
     uint16_t hwSize;
@@ -25,7 +25,7 @@ DEF_CLASS(queue_t,
     uint16_t hwTail;
     uint16_t hwLength;
 
-END_DEF_CLASS(queue_t, WHICH(Object *ptType; INHERIT(INTERNAL_PROTECTED(queue_t)) IMPLEMENT(i_queue_t) ))
+end_def_class(queue_t, WHICH(Object *ptType; INHERIT(INTERNAL_PROTECTED(queue_t)) IMPLEMENT(i_queue_t) ))
 
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
@@ -33,7 +33,7 @@ END_DEF_CLASS(queue_t, WHICH(Object *ptType; INHERIT(INTERNAL_PROTECTED(queue_t)
 /*============================ IMPLEMENTATION ================================*/
 bool enqueue(queue_t *ptQueue, void *ptStream)
 {
-    CLASS(queue_t) *ptThis = (CLASS(queue_t) *)ptQueue;
+    class(queue_t) *ptThis = (class(queue_t) *)ptQueue;
     
     if ((NULL == ptQueue) || (NULL == ptStream)) {
         return false;
@@ -59,7 +59,7 @@ bool enqueue(queue_t *ptQueue, void *ptStream)
 
 bool dequeue(queue_t *ptQueue, void *ptStream)
 {
-    CLASS(queue_t) *ptThis = (CLASS(queue_t) *)ptQueue;
+    class(queue_t) *ptThis = (class(queue_t) *)ptQueue;
     
     if ((NULL == ptQueue)||(NULL == ptStream)) {
         return false;

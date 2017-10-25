@@ -21,12 +21,12 @@ END_DEF_PROTECTED(queue_t)
 
 
 // interface
-DECLARE_CLASS(queue_t)
-DEF_INTERFACE(i_queue_t)
+declare_class(queue_t)
+def_interface(i_queue_t)
 
     bool (*Dequeue)(queue_t *ptQueue, void *ptStream);
     bool (*Enqueue)(queue_t *ptQueue, void *ptStream);
 
-END_DEF_INTERFACE(i_queue_t)
+end_def_interface(i_queue_t)
  
 #endif /* __common_queue_h */

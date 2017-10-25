@@ -18,11 +18,11 @@
  
 /*============================ TYPES =========================================*/
 
-DECLARE_CLASS(byte_queue_t)
+declare_class(byte_queue_t)
 
-DEF_CLASS(byte_queue_t, INHERIT(queue_t))
+def_class(byte_queue_t, INHERIT(queue_t))
 
-END_DEF_CLASS(byte_queue_t, INHERIT(queue_t))
+end_def_class(byte_queue_t, INHERIT(queue_t))
 
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
@@ -46,7 +46,7 @@ implement_constructor(byte_queue_t)
         }
 
         // 1、调用父类构造方法
-        base_constructor(byte_queue_t, REF_OBJ_AS(this, queue_t), pchBuffer, hwSize);
+        base_constructor(byte_queue_t, ref_obj_as(this, queue_t), pchBuffer, hwSize);
 
         // 2、构造当
         base_protected(queue_t)->hwItemSize = 1;
@@ -58,7 +58,7 @@ implement_destructors(byte_queue_t)
         // 1、析构当前类
                      
         // 2、调用父类析构，析构父类
-        base_destructors(byte_queue_t, REF_OBJ_AS(this, queue_t));
+        base_destructors(byte_queue_t, ref_obj_as(this, queue_t));
     )
 
 byte_queue_t* new_byte_queue(uint8_t *pchBuffer, uint16_t hwSize)
@@ -81,7 +81,7 @@ byte_queue_t* new_byte_queue(uint8_t *pchBuffer, uint16_t hwSize)
 
 void delete_byte_queue(byte_queue_t *ptQueue)
 {
-    CLASS(byte_queue_t) *ptThis = (CLASS(byte_queue_t) *)ptQueue;
+    class(byte_queue_t) *ptThis = (class(byte_queue_t) *)ptQueue;
     
     if (NULL == ptThis) {
         return;
