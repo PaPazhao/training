@@ -1,21 +1,19 @@
-/***************************************************************************
- *   Copyright(C)2009-2012 by Gorgon Meducer<Embedded_zhuoran@hotmail.com> *
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU Lesser General Public License as        *
- *   published by the Free Software Foundation; either version 2 of the    *
- *   License, or (at your option) any later version.                       *
- *                                                                         *
- *   This program is distributed in the hope that it will be useful,       *
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
- *   GNU General Public License for more details.                          *
- *                                                                         *
- *   You should have received a copy of the GNU Lesser General Public      *
- *   License along with this program; if not, write to the                 *
- *   Free Software Foundation, Inc.,                                       *
- *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
- ***************************************************************************/
+/****************************************************************************
+*  Copyright 2017 Gorgon Meducer (Email:embedded_zhuoran@hotmail.com)       *
+*                                                                           *
+*  Licensed under the Apache License, Version 2.0 (the "License");          *
+*  you may not use this file except in compliance with the License.         *
+*  You may obtain a copy of the License at                                  *
+*                                                                           *
+*     http://www.apache.org/licenses/LICENSE-2.0                            *
+*                                                                           *
+*  Unless required by applicable law or agreed to in writing, software      *
+*  distributed under the License is distributed on an "AS IS" BASIS,        *
+*  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. *
+*  See the License for the specific language governing permissions and      *
+*  limitations under the License.                                           *
+*                                                                           *
+****************************************************************************/
 
 #ifndef __OBJECT_ORIENTED_C_H__
 #define __OBJECT_ORIENTED_C_H__
@@ -65,14 +63,25 @@
 //! \brief macro for initializing an event
 #define INIT_DELEGATE(__NAME/*,__ASYN*/)           delegate_init(&(__NAME)/*, (__ASYN)*/)
 
-
- 
+/*! \note add WHICH macro to support multiple inheriting and implementations
+ *!       DEF_CLASS( example_base_t )
+ *!           ...
+ *!       END_DEF_CLASS( example_base_t )
+ *!
+ *!       DEF_INTERFACE( i_example_t )
+ *!           ...
+ *!       END_INTERFACE( i_example_t )
+ *!     
+ *!       DEF_CLASS( example_t, WHICH( INHERIT( example_base_t ) IMPLEMENT( i_example_t ) ) )
+ *!           ...
+ *!       END_DEF_CLASS( example_t, WHICH( INHERIT( example_base_t ) IMPLEMENT( i_example_t ) ) )
+  */
+#define WHICH(...)                  struct { __VA_ARGS__ };
 
 #define DECLARE_CLASS(__NAME)                   \
      typedef union __NAME __NAME;                
 
 #define __DEF_CLASS(__NAME,...)                 \
-    /*typedef union __NAME __NAME;  */          \
     typedef struct __##__NAME __##__NAME;       \
     struct __##__NAME {                         \
         __VA_ARGS__
@@ -112,7 +121,6 @@
 
 
 #define __EXTERN_CLASS(__NAME,...)                  \
-    /*typedef union __NAME __NAME; */               \
     union __NAME {                                  \
         __VA_ARGS__                                 \
         uint_fast8_t __NAME##__chMask[(sizeof(struct{\
@@ -123,6 +131,25 @@
         }) + sizeof(uint_fast8_t) - 1) / sizeof(uint_fast8_t)];\
     };
 
+/*! \note Support for protected members
+ */
+//! @{
+#define __DECLARE_PROTECTED(__BELONGS_TO)           DECLARE_CLASS           (__p_##__BELONGS_TO)
+#define __DEF_PROTECTED(__BELONGS_TO, ...)          DEF_CLASS               (__p_##__BELONGS_TO, __VA_ARGS__ )
+#define __END_DEF_PROTECTED(__BELONGS_TO, ...)      END_DEF_CLASS           (__p_##__BELONGS_TO, __VA_ARGS__ )
+#define __EXTERN_PROTECTED(__BELONGS_TO, ...)       EXTERN_CLASS            (__p_##__BELONGS_TO, __VA_ARGS__ )
+#define __END_EXTERN_PROTECTED(__BELONGS_TO, ...)   END_EXTERN_CLASS        (__p_##__BELONGS_TO, __VA_ARGS__ )
+#define __PROTECTED(__BELONGS_TO)                   __p_##__BELONGS_TO
+#define __INTERNAL_PROTECTED(__BELONGS_TO)          CLASS                   (__p_##__BELONGS_TO)
+
+#define DECLARE_PROTECTED(__BELONGS_TO)             __DECLARE_PROTECTED     (__BELONGS_TO)
+#define DEF_PROTECTED(__BELONGS_TO, ...)            __DEF_PROTECTED         (__BELONGS_TO, __VA_ARGS__ )
+#define END_DEF_PROTECTED(__BELONGS_TO, ...)        __END_DEF_PROTECTED     (__BELONGS_TO, __VA_ARGS__ )
+#define EXTERN_PROTECTED(__BELONGS_TO, ...)         __EXTERN_PROTECTED      (__BELONGS_TO, __VA_ARGS__ )
+#define END_EXTERN_PROTECTED(__BELONGS_TO, ...)     __END_EXTERN_PROTECTED  (__BELONGS_TO, __VA_ARGS__ )
+#define PROTECTED(__BELONGS_TO)                     __PROTECTED             (__BELONGS_TO)
+#define INTERNAL_PROTECTED(__BELONGS_TO)            __INTERNAL_PROTECTED    (__BELONGS_TO)
+//! @}
 
 //! \name interface definition
 //! @{
@@ -140,8 +167,8 @@
 #define DEF_STRUCTURE(__NAME,...)                   \
             typedef struct __NAME __NAME;           \
             __VA_ARGS__                             \
-            struct __NAME {                         
-                        
+            struct __NAME {
+
 #define END_DEF_STRUCTURE(__NAME)                   \
             };
 //! @}
@@ -180,7 +207,6 @@
 
 #define REF_INTERFACE(__INTERFACE)      const __INTERFACE *ptMethod;
            
-
 /*============================ TYPES =========================================*/
 
 

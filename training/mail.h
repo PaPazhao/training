@@ -11,7 +11,7 @@
 
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
-
+#include "./event.h"
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
 
@@ -21,12 +21,11 @@
 
 #define MAIL_POST(__MAIL, __OBJ)    mail_post(__MAIL, __OBJ)
 
-#define MAIL_IS_OPEN(__MAIL)        mail_isOpen(__MAIL)
-
 
 /*============================ TYPES =========================================*/
+
 typedef struct {
-    bool bIsOpen;
+    event_t tCreatEvent;    // 添加一个消息到邮件时被set，邮件打开reset
     void *pTarget;
 }mail_t;
 
@@ -36,33 +35,27 @@ typedef struct {
 /**
  init a post char mail
  
- @param pTarget obj
+ @param ptMail obj
  */
-extern void mail_init(mail_t *pTarget);
+extern void mail_init(mail_t *ptMail);
 
 /**
  open a mail
  
- @param pTarget obj
+ @param ptMail obj
  @return target
  */
-extern void* mail_open(mail_t *pTarget);
+extern void* mail_open(mail_t *ptMail);
 
 /**
  send a mail
  
- @param pTarget mail obj pointer
+ @param ptMail mail obj pointer
  @param tObj content obj pointer
  */
-extern void mail_post(mail_t *pTarget, void *tObj);
+extern void mail_post(mail_t *ptMail, void *tObj);
 
-/**
- mail is open
- 
- @param pTarget mail obj pointer
- @return bool
- */
-extern bool mail_isOpen(mail_t *pTarget);
+extern void mail_reset(mail_t *ptMail);
 
 #endif /* mail_h */
 /* EOF */

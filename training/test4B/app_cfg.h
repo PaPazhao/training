@@ -11,5 +11,5 @@
 
 #include "../app_cfg.h"
 #include "../test1A/test1A.h"
-
+#include "msg_block.h"
 #endif /* app_cfg_h */

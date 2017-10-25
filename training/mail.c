@@ -6,87 +6,36 @@
 //  Copyright © 2017年 zhaoli. All rights reserved.
 //
 
-/*============================ INCLUDES ======================================*/
 #include "./mail.h"
 
-/*============================ MACROS ========================================*/
-
-/*============================ MACROFIED FUNCTIONS ===========================*/
-
-/*============================ TYPES =========================================*/
-
-/*============================ GLOBAL VARIABLES ==============================*/
-
-/*============================ LOCAL VARIABLES ===============================*/
-
-/*============================ PROTOTYPES ====================================*/
-
-/*============================ IMPLEMENTATION ================================*/
-
-
-/**
- init a post char mail
- 
- @param pTarget obj
- */
-void mail_init(mail_t *pTarget)
+void mail_init(mail_t *ptMail)
 {
-    if (pTarget) {
-        pTarget->bIsOpen = true;
-        pTarget->pTarget = NULL;
+    if (ptMail) {
+        INIT_EVENT(&ptMail->tCreatEvent, false, AUTOSET);
+        ptMail->pTarget = NULL;
     }
 }
 
-/**
- open a mail
- 
- @param pTarget obj
- @return target
- */
-void* mail_open(mail_t *pTarget)
+void* mail_open(mail_t *ptMail)
 {
-    
-    if (NULL == pTarget) {
+    if (NULL == ptMail) {
         return NULL;
     }
     
-    if (!pTarget->bIsOpen) {
-        pTarget->bIsOpen = true;
-        return pTarget->pTarget;
+    if ( WAIT_EVENT(&ptMail->tCreatEvent)) {
+        return ptMail->pTarget;
     }
     
     return NULL;
 }
 
-/**
- send a mail
- 
- @param pTarget mail obj pointer
- @param tObj content obj pointer
- */
-void mail_post(mail_t *pTarget, void *tObj)
+void mail_post(mail_t *ptMail, void *tObj)
 {
-    
-    if (pTarget && tObj) {
-        pTarget->bIsOpen = false;
-        pTarget->pTarget = tObj;
+    if (ptMail && tObj) {
+        SET_EVENT(&ptMail->tCreatEvent);
+        ptMail->pTarget = tObj;
     }
 }
 
-/**
- mail is open
- 
- @param pTarget mail obj pointer
- @return bool
- */
-bool mail_isOpen(mail_t *pTarget)
-{
-    
-    if (pTarget) {
-        return pTarget->bIsOpen;
-    }
-    
-    return true;
-}
 
 /* EOF */

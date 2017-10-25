@@ -79,7 +79,7 @@
 			"file": "test4B.c",
 			"settings":
 			{
-				"buffer_size": 8303,
+				"buffer_size": 7102,
 				"line_ending": "Unix"
 			}
 		},
@@ -87,7 +87,7 @@
 			"file": "/Users/han/Downloads/training/users/zhaoli/training/training/serial_out.c",
 			"settings":
 			{
-				"buffer_size": 1629,
+				"buffer_size": 1317,
 				"line_ending": "Unix"
 			}
 		}
@@ -155,7 +155,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 			"/Users/han/PHPProject/52toys/dev/web/yii2toys/club/views",
@@ -177,6 +177,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"PRN",
+			"p'r'n",
+			"test4B_echo: 2",
+			"test4B_echo: 2 - event is set, waitng....",
+			"test4B_check: 2 - SERIAL_IN",
+			"mailW",
+			"test4B_print: 2 - PRINT_HELLO over",
+			"s_tCriticalEvent",
 			"PRT",
 			"fsmCheck_world",
 			"2:",
@@ -322,15 +330,19 @@
 					"file": "test4B.c",
 					"settings":
 					{
-						"buffer_size": 8303,
+						"buffer_size": 7102,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								602,
-								602
+								6198,
+								6198
+							],
+							[
+								6510,
+								6527
 							]
 						],
 						"settings":
@@ -340,7 +352,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4816.0,
+						"translation.y": 3615.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -350,15 +362,15 @@
 					"file": "/Users/han/Downloads/training/users/zhaoli/training/training/serial_out.c",
 					"settings":
 					{
-						"buffer_size": 1629,
+						"buffer_size": 1317,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								237,
-								237
+								0,
+								0
 							]
 						],
 						"settings":
@@ -368,7 +380,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 192.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
