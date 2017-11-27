@@ -8,21 +8,16 @@
 
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
-#include "./__protected_byte_queue.h"
-#include "../__protected_queue.h"
-
-
+#include "__protected_queue.h"
+#include "__common_byte_queue.h"
 /*============================ MACROS ========================================*/
-
 /*============================ MACROFIED FUNCTIONS ===========================*/
- 
 /*============================ TYPES =========================================*/
 
 declare_class(byte_queue_t)
+def_class(byte_queue_t, which(inherit(queue_t)))
 
-def_class(byte_queue_t, INHERIT(queue_t))
-
-end_def_class(byte_queue_t, INHERIT(queue_t))
+end_def_class(byte_queue_t, which(inherit(queue_t)))
 
 /*============================ GLOBAL VARIABLES ==============================*/
 /*============================ LOCAL VARIABLES ===============================*/
@@ -44,21 +39,22 @@ implement_constructor(byte_queue_t)
         if ((NULL == pchBuffer) || (0 == hwSize)) {
             return;
         }
-
+ 
         // 1、调用父类构造方法
-        base_constructor(byte_queue_t, ref_obj_as(this, queue_t), pchBuffer, hwSize);
-
-        // 2、构造当
+        base_constructor(byte_queue_t, base_obj(queue_t), pchBuffer, hwSize);
+                     
+        // 2、构造当     
         base_protected(queue_t)->hwItemSize = 1;
+                    
     )
 
 implement_destructors(byte_queue_t)
 
     destructors_body(
         // 1、析构当前类
-                     
+ 
         // 2、调用父类析构，析构父类
-        base_destructors(byte_queue_t, ref_obj_as(this, queue_t));
+        base_destructors(byte_queue_t, queue_t);
     )
 
 byte_queue_t* new_byte_queue(uint8_t *pchBuffer, uint16_t hwSize)

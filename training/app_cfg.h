@@ -9,6 +9,11 @@
 #ifndef __APP_CONFIG_h
 #define __APP_CONFIG_h
 
+
+#define __TYPE_CONVERT(__ADDR,__TYPE)       (*((__TYPE *)(__ADDR)))
+#define TYPE_CONVERT(__ADDR, __TYPE)        __TYPE_CONVERT((__ADDR), __TYPE)
+
+
 #include <stdio.h>
 #include <stdbool.h>
 #include "ooc.h"

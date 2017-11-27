@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3304F1B21F590DF100D415BE /* mail.c in Sources */ = {isa = PBXBuildFile; fileRef = 3304F1B01F590DF100D415BE /* mail.c */; };
 		3304F1B31F5914B800D415BE /* critical_section.c in Sources */ = {isa = PBXBuildFile; fileRef = 5ED2F55F1F5837F9004EA6A7 /* critical_section.c */; };
+		33295B7C1FA9515100DFD0F8 /* peek_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 33295B7A1FA950E000DFD0F8 /* peek_queue.c */; };
 		339438881F4D2FCC00790911 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438871F4D2FCC00790911 /* main.c */; };
 		3394389B1F4D2FDF00790911 /* delay_1s.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438911F4D2FDF00790911 /* delay_1s.c */; };
 		3394389C1F4D2FDF00790911 /* serial_out.c in Sources */ = {isa = PBXBuildFile; fileRef = 339438931F4D2FDF00790911 /* serial_out.c */; };
@@ -16,6 +17,8 @@
 		339DF3E11F75167500968E02 /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 339DF3DF1F7514CD00968E02 /* queue.c */; };
 		33A13F0C1F94673C00C2EACE /* byte_queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 33A13F0A1F94647A00C2EACE /* byte_queue.c */; };
 		33A13F0E1F97060700C2EACE /* oopc_eh.c in Sources */ = {isa = PBXBuildFile; fileRef = 33A13F0D1F97060700C2EACE /* oopc_eh.c */; };
+		33AF7AD81FA2DC60003BA200 /* ooc.c in Sources */ = {isa = PBXBuildFile; fileRef = 33AF7AD71FA2DC60003BA200 /* ooc.c */; };
+		33BAFC731FCBA1A700C09F18 /* peek_queue.h in Sources */ = {isa = PBXBuildFile; fileRef = 33295B7B1FA950E000DFD0F8 /* peek_queue.h */; };
 		5E1C21081F7085F000F82AEF /* bind.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C21061F7085F000F82AEF /* bind.c */; };
 		5E1C210B1F71DCED00F82AEF /* delegate.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C21091F71DCED00F82AEF /* delegate.c */; };
 		5E1C210E1F7327B100F82AEF /* msg_block.c in Sources */ = {isa = PBXBuildFile; fileRef = 5E1C210C1F7327B100F82AEF /* msg_block.c */; };
@@ -38,6 +41,12 @@
 /* Begin PBXFileReference section */
 		3304F1B01F590DF100D415BE /* mail.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mail.c; sourceTree = "<group>"; };
 		3304F1B11F590DF100D415BE /* mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mail.h; sourceTree = "<group>"; };
+		33295B781FA950E000DFD0F8 /* __protected_peek_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __protected_peek_queue.h; sourceTree = "<group>"; };
+		33295B791FA950E000DFD0F8 /* app_cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
+		33295B7A1FA950E000DFD0F8 /* peek_queue.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = peek_queue.c; sourceTree = "<group>"; };
+		33295B7B1FA950E000DFD0F8 /* peek_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = peek_queue.h; sourceTree = "<group>"; };
+		332A68AE1FB157D6007F3630 /* __common_peek_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __common_peek_queue.h; sourceTree = "<group>"; };
+		332A68AF1FB15E74007F3630 /* __common_byte_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __common_byte_queue.h; sourceTree = "<group>"; };
 		33363F191F50101A000346B6 /* test4A.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test4A.c; sourceTree = "<group>"; };
 		33363F1A1F50101A000346B6 /* test4A.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = test4A.h; sourceTree = "<group>"; };
 		33363F1C1F50102C000346B6 /* app_cfg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app_cfg.h; sourceTree = "<group>"; };
@@ -66,6 +75,7 @@
 		33A13F0B1F94647A00C2EACE /* byte_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = byte_queue.h; sourceTree = "<group>"; };
 		33A13F0D1F97060700C2EACE /* oopc_eh.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = oopc_eh.c; sourceTree = "<group>"; };
 		33AF7AD61FA01630003BA200 /* __common_queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __common_queue.h; sourceTree = "<group>"; };
+		33AF7AD71FA2DC60003BA200 /* ooc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ooc.c; sourceTree = "<group>"; };
 		5E1C21061F7085F000F82AEF /* bind.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bind.c; sourceTree = "<group>"; };
 		5E1C21071F7085F000F82AEF /* bind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bind.h; sourceTree = "<group>"; };
 		5E1C21091F71DCED00F82AEF /* delegate.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delegate.c; sourceTree = "<group>"; };
@@ -92,6 +102,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33295B771FA950E000DFD0F8 /* peek_queue */ = {
+			isa = PBXGroup;
+			children = (
+				33295B791FA950E000DFD0F8 /* app_cfg.h */,
+				33295B7A1FA950E000DFD0F8 /* peek_queue.c */,
+				33295B7B1FA950E000DFD0F8 /* peek_queue.h */,
+				33295B781FA950E000DFD0F8 /* __protected_peek_queue.h */,
+				332A68AE1FB157D6007F3630 /* __common_peek_queue.h */,
+			);
+			path = peek_queue;
+			sourceTree = "<group>";
+		};
 		333D6C9B1F5000AD008A56F6 /* test4A */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				339438991F4D2FDF00790911 /* ooc.h */,
+				33AF7AD71FA2DC60003BA200 /* ooc.c */,
 				33A13F061F944E6F00C2EACE /* oopc_eh.h */,
 				33A13F0D1F97060700C2EACE /* oopc_eh.c */,
 				339438931F4D2FDF00790911 /* serial_out.c */,
@@ -171,12 +194,13 @@
 		339DF3DD1F7514CD00968E02 /* queue */ = {
 			isa = PBXGroup;
 			children = (
+				33295B771FA950E000DFD0F8 /* peek_queue */,
 				33A13F071F94647A00C2EACE /* byte_queue */,
 				339DF3DE1F7514CD00968E02 /* app_cfg.h */,
 				339DF3DF1F7514CD00968E02 /* queue.c */,
 				339DF3E01F7514CD00968E02 /* queue.h */,
-				33AF7AD61FA01630003BA200 /* __common_queue.h */,
 				339DF4051F7B25D100968E02 /* __protected_queue.h */,
+				33AF7AD61FA01630003BA200 /* __common_queue.h */,
 			);
 			path = queue;
 			sourceTree = "<group>";
@@ -184,10 +208,11 @@
 		33A13F071F94647A00C2EACE /* byte_queue */ = {
 			isa = PBXGroup;
 			children = (
-				33A13F081F94647A00C2EACE /* __protected_byte_queue.h */,
 				33A13F091F94647A00C2EACE /* app_cfg.h */,
 				33A13F0A1F94647A00C2EACE /* byte_queue.c */,
 				33A13F0B1F94647A00C2EACE /* byte_queue.h */,
+				33A13F081F94647A00C2EACE /* __protected_byte_queue.h */,
+				332A68AF1FB15E74007F3630 /* __common_byte_queue.h */,
 			);
 			path = byte_queue;
 			sourceTree = "<group>";
@@ -271,9 +296,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33BAFC731FCBA1A700C09F18 /* peek_queue.h in Sources */,
+				33295B7C1FA9515100DFD0F8 /* peek_queue.c in Sources */,
 				33A13F0C1F94673C00C2EACE /* byte_queue.c in Sources */,
 				33A13F0E1F97060700C2EACE /* oopc_eh.c in Sources */,
 				339DF3E11F75167500968E02 /* queue.c in Sources */,
+				33AF7AD81FA2DC60003BA200 /* ooc.c in Sources */,
 				5E1C21081F7085F000F82AEF /* bind.c in Sources */,
 				3304F1B31F5914B800D415BE /* critical_section.c in Sources */,
 				5ED2F5641F585352004EA6A7 /* test4B.c in Sources */,
@@ -384,7 +412,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2R6AR9B35M;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -393,7 +421,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2R6AR9B35M;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = c11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

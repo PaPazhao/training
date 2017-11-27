@@ -6,19 +6,21 @@
 //  Copyright © 2017年 zhaoli. All rights reserved.
 //
 
-#ifndef __common_queue_h
-#define __common_queue_h
+#ifndef __COMMON_QUEUE_H__
+#define __COMMON_QUEUE_H__
 
 #include "../app_cfg.h"
 
 // protected 的属性、方法
-DECLARE_PROTECTED(queue_t)
-DEF_PROTECTED(queue_t)
-
+declare_protected(queue_t)
+def_protected(queue_t)
+    uint16_t hwSize;
+    uint16_t hwHead;
+    uint16_t hwTail;
+    uint16_t hwLength;
     uint16_t hwItemSize;
-
-END_DEF_PROTECTED(queue_t)
-
+    uint8_t *pchBuffer;
+end_def_protected(queue_t)
 
 // interface
 declare_class(queue_t)
