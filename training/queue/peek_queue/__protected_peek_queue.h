@@ -9,8 +9,9 @@
 #ifndef __PROTECTED_PEEK_QUEUE_H__
 #define __PROTECTED_PEEK_QUEUE_H__
 
-#include "__protected_byte_queue.h"
 #include "./__common_peek_queue.h"
+#include "../byte_queue/__protected_byte_queue.h"
+
 // 抽象类 queue_t
 //declare_class(peek_queue_t)
 extern_class(peek_queue_t,

@@ -8,18 +8,21 @@
 
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
-#include "__common_peek_queue.h"
-#include "__protected_byte_queue.h"
-
+#include "./__common_peek_queue.h"
+#include "../byte_queue/__protected_byte_queue.h"
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
 /*============================ TYPES =========================================*/
 
 declare_class(peek_queue_t)
-def_class(peek_queue_t, which(inherit(byte_queue_t) implement(i_peek_queue_t)) )
+def_class(peek_queue_t, 
+    which(   inherit(byte_queue_t) 
+             implement(i_peek_queue_t)))
+
     uint16_t hwPeekHead;
     uint16_t hwPeekTail;
     uint16_t hwPeekLen;
+
 end_def_class(peek_queue_t, which(inherit(byte_queue_t) implement(i_peek_queue_t)))
 
 /*============================ GLOBAL VARIABLES ==============================*/
@@ -27,6 +30,7 @@ end_def_class(peek_queue_t, which(inherit(byte_queue_t) implement(i_peek_queue_t
 /*============================ PROTOTYPES ====================================*/
 static peek_queue_t* alloc_memory(void);
 static void free_memory(peek_queue_t* ptItem);
+
 static bool reset_peek_byte(peek_queue_t *ptQueue);
 static bool get_all_peek_byte(peek_queue_t *ptQueue);
 static bool peek_byte_queue(peek_queue_t *ptQueue, uint8_t *pchObj);
@@ -67,15 +71,14 @@ implement_constructor(peek_queue_t)
          this_interface(i_peek_queue_t).Peek        = peek_byte_queue;
          this_interface(i_peek_queue_t).ResetPeek   = reset_peek_byte;
 
-                     ____p_queue_t *ptSuperProtecd = (____p_queue_t *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
-                     ptSuperProtecd->hwItemSize = 1;
-                     
-                     s_tOverWriteMethod.Dequeue = this.base__byte_queue_t.base__queue_t.base__i_queue_t.Dequeue;
-                     this.base__byte_queue_t.base__queue_t.base__i_queue_t.Dequeue = (void *)peek_dequeue;
-                     
-                     s_tOverWriteMethod.Enqueue = this.base__byte_queue_t.base__queue_t.base__i_queue_t.Enqueue;
-                     this.base__byte_queue_t.base__queue_t.base__i_queue_t.Enqueue = (void*)peek_enqueue;
-
+         protected_content(queue_t) *ptProtecd = (protected_content(queue_t) *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
+         ptProtecd->hwItemSize = 1;
+         
+         s_tOverWriteMethod.Dequeue = this.base__byte_queue_t.base__queue_t.base__i_queue_t.Dequeue;
+         this.base__byte_queue_t.base__queue_t.base__i_queue_t.Dequeue = (void *)peek_dequeue;
+         
+         s_tOverWriteMethod.Enqueue = this.base__byte_queue_t.base__queue_t.base__i_queue_t.Enqueue;
+         this.base__byte_queue_t.base__queue_t.base__i_queue_t.Enqueue = (void*)peek_enqueue;
     )
 
 implement_destructors(peek_queue_t)
@@ -138,9 +141,9 @@ static bool peek_dequeue(peek_queue_t *ptQueue, void *ptStream)
     if (!s_tOverWriteMethod.Dequeue(&(this.base__byte_queue_t.base__queue_t), ptStream)) {
         return false;
     }
-
-    ____p_queue_t *ptSuperProtecd = (____p_queue_t *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
-    this.hwPeekLen = ptSuperProtecd->hwLength;
+    
+    protected_content(queue_t) *ptProtected = (protected_content(queue_t) *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
+    this.hwPeekLen = ptProtected->hwLength;
  
     return true;
 }
@@ -169,15 +172,15 @@ static bool peek_byte_queue(peek_queue_t *ptQueue, uint8_t *pchObj)
         return false;
     }
     
-    ____p_queue_t *ptSuperProtecd = (____p_queue_t *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
+    protected_content(queue_t) *ptProtected = (protected_content(queue_t) *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
  
-    if((this.hwPeekHead == ptSuperProtecd->hwTail) && (!this.hwPeekLen )){
+    if((this.hwPeekHead == ptProtected->hwTail) && (!this.hwPeekLen )){
         return false;
     }
     
-    *pchObj = ptSuperProtecd->pchBuffer[this.hwPeekHead];
+    *pchObj = ptProtected->pchBuffer[this.hwPeekHead];
     this.hwPeekHead ++;
-    if (this.hwPeekHead >= ptSuperProtecd->hwSize) {
+    if (this.hwPeekHead >= ptProtected->hwSize) {
         this.hwPeekHead = 0;
     }
     this.hwPeekLen--;
@@ -192,10 +195,10 @@ static bool get_all_peek_byte(peek_queue_t *ptQueue)
         return false;
     }
     
-    ____p_queue_t *ptSuperProtecd = (____p_queue_t *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
+    protected_content(queue_t) *ptProtected = (protected_content(queue_t) *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
     
-    ptSuperProtecd->hwHead = this.hwPeekHead;
-    ptSuperProtecd->hwLength = this.hwPeekLen;
+    ptProtected->hwHead = this.hwPeekHead;
+    ptProtected->hwLength = this.hwPeekLen;
     
     return true;
 }
@@ -207,10 +210,9 @@ static bool reset_peek_byte(peek_queue_t *ptQueue)
         return false;
     }
     
-    ____p_queue_t *ptSuperProtecd = (____p_queue_t *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
- 
-    this.hwPeekHead = ptSuperProtecd->hwHead;
-    this.hwPeekLen  = ptSuperProtecd->hwLength;
+    protected_content(queue_t) *ptProtected = (protected_content(queue_t) *)(&(this.base__byte_queue_t.base__queue_t.base____p_queue_t));
+    this.hwPeekHead = ptProtected->hwHead;
+    this.hwPeekLen  = ptProtected->hwLength;
     
     return true;
 }

@@ -8,7 +8,7 @@
 
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
-#include "__common_queue.h"
+#include "./__common_queue.h"
 
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
@@ -28,26 +28,27 @@ end_def_class(queue_t, which(Object *ptType; inherit(protected(queue_t)) impleme
 bool enqueue(queue_t *ptQueue, void *ptStream)
 {
     class(queue_t) *ptThis = (class(queue_t) *)ptQueue;
+    protected_content(queue_t) *ptProtected = &this_protected(queue_t);
     
     if ((NULL == ptQueue) || (NULL == ptStream)) {
         return false;
     }
     
-    if ((this_protected(queue_t).hwHead == this_protected(queue_t).hwTail) && (0 != this_protected(queue_t).hwLength)) {
+    if ((ptProtected->hwHead == ptProtected->hwTail) && (0 != ptProtected->hwLength)) {
         return false;
     }
 
-    uint16_t hwItemSize =  this_protected(queue_t).hwItemSize;
-    
-    if (NULL == memcpy(&this_protected(queue_t).pchBuffer[this_protected(queue_t).hwTail * hwItemSize], ptStream, hwItemSize)) {
+    uint16_t hwItemSize = ptProtected->hwItemSize;
+ 
+    if (NULL == memcpy(&ptProtected->pchBuffer[ptProtected->hwTail * hwItemSize], ptStream, hwItemSize)) {
         return false;
     }
  
-    this_protected(queue_t).hwTail++;
-    if (this_protected(queue_t).hwTail >= this_protected(queue_t).hwSize) {
-        this_protected(queue_t).hwTail = 0;
+    ptProtected->hwTail++;
+    if (ptProtected->hwTail >= ptProtected->hwSize) {
+        ptProtected->hwTail = 0;
     }
-    this_protected(queue_t).hwLength++;
+    ptProtected->hwLength++;
     
     return true;
 }
@@ -55,25 +56,26 @@ bool enqueue(queue_t *ptQueue, void *ptStream)
 bool dequeue(queue_t *ptQueue, void *ptStream)
 {
     class(queue_t) *ptThis = (class(queue_t) *)ptQueue;
+    protected_content(queue_t) *ptProtected = &this_protected(queue_t);
     
     if ((NULL == ptQueue)||(NULL == ptStream)) {
         return false;
     }
     
-    if ((this_protected(queue_t).hwHead == this_protected(queue_t).hwTail) && (!this_protected(queue_t).hwLength)) {
+    if ((ptProtected->hwHead == ptProtected->hwTail) && (!ptProtected->hwLength)) {
         return false;
     }
 
-    uint16_t hwItemSize = this_protected(queue_t).hwItemSize;
-    if (NULL == memcpy(ptStream, &(this_protected(queue_t).pchBuffer[this_protected(queue_t).hwHead * hwItemSize]), hwItemSize)) {
+    uint16_t hwItemSize = ptProtected->hwItemSize;
+    if (NULL == memcpy(ptStream, &(ptProtected->pchBuffer[ptProtected->hwHead * hwItemSize]), hwItemSize)) {
         return false;
     }
     
-    this_protected(queue_t).hwHead++;
-    if (this_protected(queue_t).hwHead >= this_protected(queue_t).hwSize) {
-        this_protected(queue_t).hwHead = 0;
+    ptProtected->hwHead++;
+    if (ptProtected->hwHead >= ptProtected->hwSize) {
+        ptProtected->hwHead = 0;
     }
-    this_protected(queue_t).hwLength--;
+    ptProtected->hwLength--;
 
     return true;
 }
@@ -81,21 +83,25 @@ bool dequeue(queue_t *ptQueue, void *ptStream)
 class_abstract_cfg(queue_t)
 
 implement_destructors(queue_t)
+    
+    protected_content(queue_t) *ptProtected = &this_protected(queue_t);
 
     destructors_body(
         this_interface(i_queue_t).Dequeue = NULL;
         this_interface(i_queue_t).Enqueue = NULL;
-        this_protected(queue_t).hwItemSize = 0;
-        this_protected(queue_t).pchBuffer = NULL;
-        this_protected(queue_t).hwSize = 0;
-        this_protected(queue_t).hwHead = 0;
-        this_protected(queue_t).hwTail = 0;
-        this_protected(queue_t).hwLength = 0;
+        ptProtected->hwItemSize = 0;
+        ptProtected->pchBuffer = NULL;
+        ptProtected->hwSize = 0;
+        ptProtected->hwHead = 0;
+        ptProtected->hwTail = 0;
+        ptProtected->hwLength = 0;
         this.ptType = NULL;
     )
 
 implement_constructor(queue_t)
-
+    
+    protected_content(queue_t) *ptProtected = &this_protected(queue_t);
+    
     constructor_body(
  
         read_param(uint8_t *, pchBuffer);
@@ -107,12 +113,12 @@ implement_constructor(queue_t)
         
         this_interface(i_queue_t).Dequeue = dequeue;
         this_interface(i_queue_t).Enqueue = enqueue;
-        this_protected(queue_t).pchBuffer = pchBuffer;
-        this_protected(queue_t).hwSize = hwSize;
-        this_protected(queue_t).hwTail = 0;
-        this_protected(queue_t).hwHead = 0;
-        this_protected(queue_t).hwLength = 0;
-        this_protected(queue_t).hwItemSize = 0;
+        ptProtected->pchBuffer = pchBuffer;
+        ptProtected->hwSize = hwSize;
+        ptProtected->hwTail = 0;
+        ptProtected->hwHead = 0;
+        ptProtected->hwLength = 0;
+        ptProtected->hwItemSize = 0;
         this.ptType = typeof(queue_t);
     )
  

@@ -16,7 +16,7 @@ extern_class(queue_t,
     which(  Object *ptType;
             inherit(protected(queue_t))
             implement(i_queue_t)))
-//    uint8_t *pchBuffer;
+
 end_extern_class(queue_t, which( Object *ptType; inherit(protected(queue_t)) implement(i_queue_t)))
  
 #endif /* Header_h */

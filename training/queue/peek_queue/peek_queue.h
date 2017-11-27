@@ -11,8 +11,8 @@
 
 /*============================ INCLUDES ======================================*/
 #include "./app_cfg.h"
-#include "byte_queue.h"
-//#include "__protected_queue.h"
+#include "../byte_queue/byte_queue.h"
+
 /*============================ MACROS ========================================*/
 /*============================ MACROFIED FUNCTIONS ===========================*/
 /*============================ TYPES =========================================*/
@@ -26,6 +26,7 @@ def_interface(i_peek_queue_t)
     bool (*GetAllPeek)  (peek_queue_t *ptQueue);
     bool (*ResetPeek)   (peek_queue_t *ptQueue);
 end_def_interface(i_peek_queue_t)
+
 // 字节队列类
 declare_class(peek_queue_t)
 extern_class(peek_queue_t,
